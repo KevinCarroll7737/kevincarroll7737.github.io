@@ -1,32 +1,17 @@
-# Permalinks
-permalink:           pretty
+title: Srb_ Ethicahl Hacking Blog
+description: Here is where I post my CTF walktrhoughs and readings.
+show_downloads: true
 
-# Setup
-title:               Poole
-tagline:             The Jekyll Butler
-url:                 http://getpoole.com
-paginate:            1
-baseurl:             ""
+baseurl: "/" # change this to the subpath of your site, e.g. /blog. Leave it empty if you don't need it.
+url: "https://kevincarroll7737.github.io" # change this to the base hostname & protocol for your site
 
-# Assets
-#
-# We specify the directory for Jekyll so we can use @imports.
-sass:
-  sass_dir:          _sass
-  style:            :compressed
+cayman-blog:
+  date_format: "%b %-d, %Y"
 
-# About/contact
-author:
-  name:              Mark Otto
-  url:               https://twitter.com/mdo
-  email:             markdotto@gmail.com
+theme: # leave it empty
 
-# Custom vars
-version:             2.0.0
-github:
-  repo:              https://github.com/poole/poole
-
-# Gems
-gems:
-  - jekyll-paginate
-  - jekyll-gist
+# social
+author: "Srb_"
+twitter:
+  username: Srb_
+#  admins:
