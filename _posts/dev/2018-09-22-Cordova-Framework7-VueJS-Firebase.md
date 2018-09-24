@@ -3,94 +3,36 @@ layout: dev
 categories: [dev]
 ---
 
-# Jekyll Framework
+> I've been ask by a sponsor to develop a slot machine mobile application. I wasn't sure if I should accept it since I never develop a whole project from scratch. So I made some researches on the upstream and found many solutions which I tought could be realist for me and accepted the deal.
 
-This is my first Jekyll blog post with this theme -- [cayman blog](https://github.com/lorepirri/cayman-blog). 
+This article will walk you trough this journey. Hopefuly, it will guide you where I found my self a lost. Let's be honest, I am NOT a senior full stack developer and the main reason why I accepted to make this project, is to learn. I encourage everyone to do so :-)
 
-Before starting, if you want to preview localy your modifications as you build your blog, simply run these commands and connect via your browser at `https://localhost:4000`
+![](/assets/images/gohead.jpeg)
 
-```bash
-script bootstrap
-bundle install
-script/server
-```
+### It's when I started searching for a cross platform solution that I met [cordova](https://cordova.apache.org/). 
 
-The first thing I did was removing that ugly banner from `./_layouts/default.html`. To do that, simply remove all the `section` that contains the `class="page-header"` and replace it by this or w/e you want :-)
+> Mobile apps with HTML, CSS & JS
+>
+> Target multiple platforms with one code base
+>
+> Free and open source
 
-```html
-{% raw %}
-<div style="padding-top: 10%; text-align: center">
-  <h1 class="project-name">{{ page-title }}</h1>
-  <h2 class="project-tagline">{{ page-tagline }}</h2>
-</div>
-{% endraw %}
-```
-Then, I restructured this template by adding/removing these files and folders:
+![logo](/assets/images/logo_cordova_phonegap.jpg)
 
-```
-+ ./offSec.md
-+ ./dev.md
-+ ./_posts/{dev, home, offsec}
-+ ./_layouts/{dev.html, offsec.html}
-+ ./assets/imgaes
-```
+This framework do NOT transpile your HTML base project into a native languague. It simply creates an application that is aloud to run in a `WebView`. Thus, these applications are called `hybrid` not `native`.
 
-You'll understand why these changes were useful in a second. The 2 pages that I created in the root directory will appear in the navbar on top. Let's examine one of the 2 and pay attention to the `layout` wich point to the corresponding one in the `_layout` folder (i.e.: `dev.html`).
+![chart](/assets/images/cordova_chart.jpg)
 
-```md
----
-layout: dev
-title: Dev
-tagline: Design your own desires
----
+Essentially, Cordova Appache only runs a server localy which contains all the pages of your application and uses the platform's libraries to render it as HTML or to run native functionality.
 
-# Offensive Security
+![server](/assets/images/cordova_server.jpg)
 
-(...)
-```
+> Everything has its limit. Apache Cordova applications are slower than native applications of course. Still here is a list of known companies who are using it:
 
-Great but not enough! :) To simplify my life, I want to keep my posts in differrent files without modifying any other pages. To do that, Jekyll uses the [Liquid](https://jekyllrb.com/docs/liquid/) templating language. Generally in Liquid you output content of [variables](https://jekyllrb.com/docs/variables/) using two curly braces and perform logic statements by surrounding them in a curly brace percentage sign.
-
-
-```html
----
-layout: default
----
-{% raw %}
-<div>
-
-  {{ content }}
-
-  <h2>Latest Posts</h2>
-
-  <div>&nbsp;</div>
-  <ul class="post-list">
-    {% for post in site.categories.dev %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-    {% endfor %}
-  </ul>
-
-</div>      
-{% endraw %}
-```
-
-Now all I'll have to do is add the corresponding `category` in the `front matter` of each posts, and Jekyll will recongize it. In this example, Jekyll will automatically return every posts that are in the  `dev` category. 
-
-Great, so let's create one! First, make sure that you place the file in a child directory of `./_posts`, and make sur it has the `date` as prefix and `.md` as suffix. 
-
-For example: `2018-09-22-My-Super-First-Dev-Post.md`.
-
-```html
----
-layout: dev 
-categories: [dev]
----
-
-# Welcome
-
-**Hello world**, this is my first Jekyll blog post.
-
-I hope you like it!
-```
++ Facebook. Facebook uses a forked version of Apache Cordova in their mobile SDK. ...
++ Salesforce. Salesforce uses a fork of Apache Cordova for their mobile development SDK. ...
++ IBM. ...
++ Microsoft. ...
++ RIM. ...
++ Zynga. ...
++ Logitech.
