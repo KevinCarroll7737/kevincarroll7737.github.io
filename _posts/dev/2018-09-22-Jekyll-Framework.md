@@ -16,8 +16,8 @@ script/server
 ```
 
 > The first thing I did was removing that ugly banner from `./_layouts/default.html`. 
->
-> To do that, simply remove all the `section` that contains the `class="page-header"` and replace it by this or w/e you want :-)
+
+To do that, simply remove all the `section` that contains the `class="page-header"` and replace it by this or w/e you want :-)
 
 ```html
 {% raw %}
