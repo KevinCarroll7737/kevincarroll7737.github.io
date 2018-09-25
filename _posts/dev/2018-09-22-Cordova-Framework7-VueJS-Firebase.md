@@ -27,7 +27,7 @@ Essentially, Cordova Appache only runs a server localy which contains all the pa
 
 ![server](/assets/images/cordova_server.jpg)
 
-> Everything has its limit. Apache Cordova applications are slower than native applications of course. Still, here is a list of known companies who are using it:
+> Everything has its limit. Apache Cordova applications are slower than native applications of course. Still, here is a list of known companies that are using it:
 
 + Facebook. Facebook uses a forked version of Apache Cordova in their mobile SDK. ...
 + Salesforce. Salesforce uses a fork of Apache Cordova for their mobile development SDK. ...
@@ -53,23 +53,22 @@ It exists a bunch of frameworks that provide mobile application component like b
 
 ![vuejs](/assets/images/vuejs.jpg)
 
-> Here's my first advice, when you start a project make sure to fork the right repository hehe! I would say, look for the one that is provided by the actual framework. That way, it will be references a lot more on the support pages. In other words, do what I say not what I do. 
+> Here's my first advice, when you start a project make sure to fork the right repository hehe! I would say, look for the one that is provided by the actual framework. That way, it will be references a lot more on the support pages.
 
 <img src="/assets/images/framework7.jpg" style="max-width: 30%">
 
 Here's the [framework7 repository](https://github.com/framework7io/framework7) that offers the VueJS [kitchen sink](https://github.com/framework7io/framework7/tree/master/kitchen-sink) boiler plate. 
 
-> I don't have kids, but this will certainly by the sentence that I'll repeat the most: Do what I say and NOT what I do! ;-)
+> I don't have kids, but that will certainly by the sentence that I'll repeat the most: Do what I say and NOT what I do! ;-)
 >
-> My project is build on this [repository](https://github.com/caiobiodere/cordova-template-framework7-vue-webpack). ATM,  I am still strugglin with certain cordova-plugins.
+> My project is build on this [repository](https://github.com/caiobiodere/cordova-template-framework7-vue-webpack). ATM,  I am still strugglin with certain cordova plugins. There's a lot of work around though. Still, I is necessary to be able to use it. I'll update this post as soon as this `issues` will be closed.
 
 
 First thing first, make sure you start building on a solid foundation ;-). [Webpack](https://webpack.js.org) is a [npm](https://www.npmjs.com/) library that let's you bundle up all the dependencies of the project.
 
+![webpack](/assets/images/webpack.jpg)
 
 __The following commands are for the repository that I used, which includes webpack.__
-
-![webpack](/assets/images/webpack.jpg)
 
 #### Pro tip: Do NOT use `npm` with sudo privilege. It's not necessary and might create dependency conflicts.
 
