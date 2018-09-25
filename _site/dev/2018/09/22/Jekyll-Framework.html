@@ -194,7 +194,9 @@
 
   <h1 id="jekyll-framework">Jekyll Framework</h1>
 
-<p>This is my first Jekyll blog post with this theme – <a href="https://github.com/lorepirri/cayman-blog">cayman blog</a>.</p>
+<blockquote>
+  <p>This is my first Jekyll blog post with this theme – <a href="https://github.com/lorepirri/cayman-blog">cayman blog</a>.</p>
+</blockquote>
 
 <p>Before starting, if you want to preview localy your modifications as you build your blog, simply run these commands and connect via your browser at <code class="highlighter-rouge">https://localhost:4000</code></p>
 
@@ -203,7 +205,11 @@ bundle <span class="nb">install
 </span>script/server
 </code></pre></div></div>
 
-<p>The first thing I did was removing that ugly banner from <code class="highlighter-rouge">./_layouts/default.html</code>. To do that, simply remove all the <code class="highlighter-rouge">section</code> that contains the <code class="highlighter-rouge">class="page-header"</code> and replace it by this or w/e you want :-)</p>
+<blockquote>
+  <p>The first thing I did was removing that ugly banner from <code class="highlighter-rouge">./_layouts/default.html</code>.</p>
+
+  <p>To do that, simply remove all the <code class="highlighter-rouge">section</code> that contains the <code class="highlighter-rouge">class="page-header"</code> and replace it by this or w/e you want :-)</p>
+</blockquote>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"padding-top: 10%; text-align: center"</span><span class="nt">&gt;</span>
@@ -229,12 +235,16 @@ bundle <span class="nb">install
 <span class="na">tagline</span><span class="pi">:</span> <span class="s">Design your own desires</span>
 <span class="nn">---</span>
 
-<span class="gh"># Offensive Security</span>
+<span class="gh"># Dev</span>
 
 (...)
 </code></pre></div></div>
 
-<p>Great but not enough! :) To simplify my life, I want to keep my posts in differrent files without modifying any other pages. To do that, Jekyll uses the <a href="https://jekyllrb.com/docs/liquid/">Liquid</a> templating language. Generally in Liquid you output content of <a href="https://jekyllrb.com/docs/variables/">variables</a> using two curly braces and perform logic statements by surrounding them in a curly brace percentage sign.</p>
+<blockquote>
+  <p>Great but not enough! :) To simplify my life, I want to keep my posts in differrent files without modifying any other pages. To do that,</p>
+</blockquote>
+
+<p>Jekyll uses the <a href="https://jekyllrb.com/docs/liquid/">Liquid</a> templating language. Generally in Liquid you output content of <a href="https://jekyllrb.com/docs/variables/">variables</a> using two curly braces and perform logic statements by surrounding them in a curly brace percentage sign.</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 layout: default
@@ -261,7 +271,9 @@ layout: default
 
 <p>Now all I’ll have to do is add the corresponding <code class="highlighter-rouge">category</code> in the <code class="highlighter-rouge">front matter</code> of each posts, and Jekyll will recongize it. In this example, Jekyll will automatically return every posts that are in the  <code class="highlighter-rouge">dev</code> category.</p>
 
-<p>Great, so let’s create one! First, make sure that you place the file in a child directory of <code class="highlighter-rouge">./_posts</code>, and make sur it has the <code class="highlighter-rouge">date</code> as prefix and <code class="highlighter-rouge">.md</code> as suffix.</p>
+<blockquote>
+  <p>Great, so let’s create one! First, make sure that you place the file in a child directory of <code class="highlighter-rouge">./_posts</code>, and make sur it has the <code class="highlighter-rouge">date</code> as prefix and <code class="highlighter-rouge">.md</code> as suffix.</p>
+</blockquote>
 
 <p>For example: <code class="highlighter-rouge">2018-09-22-My-Super-First-Dev-Post.md</code>.</p>
 

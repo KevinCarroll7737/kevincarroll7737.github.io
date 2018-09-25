@@ -5,7 +5,7 @@ categories: [dev]
 
 # Jekyll Framework
 
-This is my first Jekyll blog post with this theme -- [cayman blog](https://github.com/lorepirri/cayman-blog). 
+> This is my first Jekyll blog post with this theme -- [cayman blog](https://github.com/lorepirri/cayman-blog). 
 
 Before starting, if you want to preview localy your modifications as you build your blog, simply run these commands and connect via your browser at `https://localhost:4000`
 
@@ -15,7 +15,9 @@ bundle install
 script/server
 ```
 
-The first thing I did was removing that ugly banner from `./_layouts/default.html`. To do that, simply remove all the `section` that contains the `class="page-header"` and replace it by this or w/e you want :-)
+> The first thing I did was removing that ugly banner from `./_layouts/default.html`. 
+>
+> To do that, simply remove all the `section` that contains the `class="page-header"` and replace it by this or w/e you want :-)
 
 ```html
 {% raw %}
@@ -44,12 +46,14 @@ title: Dev
 tagline: Design your own desires
 ---
 
-# Offensive Security
+# Dev
 
 (...)
 ```
 
-Great but not enough! :) To simplify my life, I want to keep my posts in differrent files without modifying any other pages. To do that, Jekyll uses the [Liquid](https://jekyllrb.com/docs/liquid/) templating language. Generally in Liquid you output content of [variables](https://jekyllrb.com/docs/variables/) using two curly braces and perform logic statements by surrounding them in a curly brace percentage sign.
+> Great but not enough! :) To simplify my life, I want to keep my posts in differrent files without modifying any other pages. To do that, 
+
+Jekyll uses the [Liquid](https://jekyllrb.com/docs/liquid/) templating language. Generally in Liquid you output content of [variables](https://jekyllrb.com/docs/variables/) using two curly braces and perform logic statements by surrounding them in a curly brace percentage sign.
 
 
 ```html
@@ -78,7 +82,7 @@ layout: default
 
 Now all I'll have to do is add the corresponding `category` in the `front matter` of each posts, and Jekyll will recongize it. In this example, Jekyll will automatically return every posts that are in the  `dev` category. 
 
-Great, so let's create one! First, make sure that you place the file in a child directory of `./_posts`, and make sur it has the `date` as prefix and `.md` as suffix. 
+> Great, so let's create one! First, make sure that you place the file in a child directory of `./_posts`, and make sur it has the `date` as prefix and `.md` as suffix. 
 
 For example: `2018-09-22-My-Super-First-Dev-Post.md`.
 
