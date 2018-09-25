@@ -4,7 +4,7 @@ category: [offsec]
 ---
 
 
-![banner](../../assets/images/htb/celestial.png)  
+![banner](/assets/images/celestial.png)  
 
 # Celestial: 10.10.10.85
 

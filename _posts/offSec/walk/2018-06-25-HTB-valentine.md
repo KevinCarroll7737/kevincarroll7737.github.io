@@ -3,7 +3,7 @@ layout: offsec
 category: [offsec]
 ---
 
-![banner](/assets/images/htb/valentine.png)
+![banner](/assets/images/valentine.png)
 
 # Valentine: 10.10.10.79
 
@@ -48,7 +48,7 @@ Nmap done: 1 IP address (1 host up) scanned in 70.08 seconds
 
 First thing first let's see what's on those HTTP(S) applications and run a `dirb`.
 
-![](../assets/images/htb/79_index.png)
+![](/assets/images/79_index.png)
 
 _index.html_
 ```html

