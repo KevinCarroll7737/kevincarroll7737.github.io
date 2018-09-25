@@ -3,6 +3,8 @@ layout: dev
 categories: [dev]
 ---
 
+![jekyll](/assets/images/jekyll.jpg)
+
 # Jekyll Framework
 
 > This is my first Jekyll blog post with this theme -- [cayman blog](https://github.com/lorepirri/cayman-blog). 
