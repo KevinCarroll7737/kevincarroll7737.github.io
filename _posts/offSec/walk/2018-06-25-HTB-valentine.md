@@ -1,4 +1,9 @@
-![banner](../../assets/images/htb/valentine.png)
+---
+layout: offsec
+category: [offsec]
+---
+
+![banner](/assets/images/htb/valentine.png)
 
 # Valentine: 10.10.10.79
 

@@ -8,12 +8,10 @@ layout: default
 
   <h2>Latest Posts</h2>
 
-  <div>&nbsp;</div>
   <ul class="post-list">
     {% for post in site.categories.offsec %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
+      - <a href="{{ post.url }}"> {{ post.title }}</a>
+      <br>
     {% endfor %}
   </ul>
 

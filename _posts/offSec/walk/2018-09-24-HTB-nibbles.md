@@ -1,4 +1,9 @@
-![banner](../../assets/images/htb/nibbles.png) 
+---
+layout: offsec
+category: [offsec]
+---
+
+![banner](/assets/images/htb/nibbles.png) 
 # Nibbles: 10.10.10.75
 
 

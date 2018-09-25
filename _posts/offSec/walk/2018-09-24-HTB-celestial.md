@@ -1,3 +1,9 @@
+---
+layout: offsec
+category: [offsec]
+---
+
+
 ![banner](../../assets/images/htb/celestial.png)  
 
 # Celestial: 10.10.10.85
