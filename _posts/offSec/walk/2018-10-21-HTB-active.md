@@ -11,7 +11,7 @@ category: [offsec]
 
 + enum4linux
 + smbclient
-+ smbspyder
++ smbspider
 + ImPacket
 
 
