@@ -203,7 +203,7 @@
 <h3 id="tools">Tools</h3>
 
 <ul>
-  <li>enum4linu</li>
+  <li>enum4linux</li>
   <li>smbclient</li>
   <li>smbspyder</li>
   <li>ImPacket</li>
@@ -212,7 +212,7 @@
 <blockquote>
   <p><strong>TL;DR</strong></p>
 
-  <p>Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPP. I can’t execute commands, so I created paquets to get a TGS from the CIFS service account and cracked the password. That gives me access as Administrator on this KDC.. game over!</p>
+  <p>Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPP. I can’t execute commands, so I created paquets to get a TGS for the CIFS service account and cracked the password. That gives me access as Administrator on this KDC.. game over!</p>
 </blockquote>
 
 <h4 id="scanning">Scanning</h4>
@@ -393,7 +393,7 @@ CME          10.10.10.100:445 DC              Users           READ
 
 <p><img src="/assets/images/impacket_GetUserSPNs.png" style="height: 100%; width: auto" /></p>
 
-<p>Here we see that before requesting the TGS of a particular SPN, Impacket makes a request (AS_REQ) Authentication Server that responds with the TGT for the SVC_TGS account.</p>
+<p>Here we see that before requesting the TGS for a particular SPN, Impacket makes a (AS_REQ) Authentication Server Request and that the server responds with the TGT for the SVC_TGS service account.</p>
 
 <p><img src="/assets/images/AS_REQ.png" style="height: 100%; width: auto" /></p>
 

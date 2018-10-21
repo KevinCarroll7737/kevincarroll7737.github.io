@@ -9,7 +9,7 @@ category: [offsec]
 
 ### Tools
 
-+ enum4linu
++ enum4linux
 + smbclient
 + smbspyder
 + ImPacket
@@ -17,7 +17,7 @@ category: [offsec]
 
 > __TL;DR__
 >
-> Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPP. I can't execute commands, so I created paquets to get a TGS from the CIFS service account and cracked the password. That gives me access as Administrator on this KDC.. game over! 
+> Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPP. I can't execute commands, so I created paquets to get a TGS for the CIFS service account and cracked the password. That gives me access as Administrator on this KDC.. game over! 
 
 #### Scanning
 
@@ -200,7 +200,7 @@ Then, with an SPN and a TGT, I can create a TGS-REQ. The great thing about a TGS
 <img src="/assets/images/impacket_GetUserSPNs.png" style="height: 100%; width: auto">
 
 
-Here we see that before requesting the TGS of a particular SPN, Impacket makes a request (AS_REQ) Authentication Server that responds with the TGT for the SVC_TGS account.
+Here we see that before requesting the TGS for a particular SPN, Impacket makes a (AS_REQ) Authentication Server Request and that the server responds with the TGT for the SVC_TGS service account.
 
 <img src="/assets/images/AS_REQ.png" style="height: 100%; width: auto">
 
