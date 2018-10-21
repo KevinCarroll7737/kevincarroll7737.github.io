@@ -9,13 +9,11 @@ This article will walk you trough this journey. Hopefuly, it will guide you wher
 
 ![](/assets/images/gohead.jpeg)
 
-### It's when I started searching for a cross platform solution that I met [cordova](https://cordova.apache.org/). 
+> It's when I started searching for a cross platform solution that I met [cordova](https://cordova.apache.org/). 
 
-> Mobile apps with HTML, CSS & JS
->
-> Target multiple platforms with one code base
->
-> Free and open source
++ Mobile apps with HTML, CSS & JS
++ Target multiple platforms with one code base
++ Free and open source
 
 ![logo](/assets/images/logo_cordova_phonegap.jpg)
 
@@ -39,6 +37,7 @@ Essentially, Cordova Appache only runs a server localy which contains all the pa
 
 ### How to create an application that looks like an application?
 
+
 It exists a bunch of frameworks that provide mobile application component like buttons, chips, notifications, etc. Here's a list of the most popular frameworks that offer that!
 
 
@@ -46,6 +45,8 @@ It exists a bunch of frameworks that provide mobile application component like b
 + React Native
 + Framework7
 + Quasar
+
+![legit](/assets/images/legit.jpg)
 
 > Since I wanted to optimize the approach, I made my choice in function of the HTML framework that was supported at this time. I heard good comments about VueJS performances. Since `Ionic 4` and `Quasar` offer it only in a beta version, I had to go with `Framework 7 v.3.2`
 
@@ -60,26 +61,83 @@ It exists a bunch of frameworks that provide mobile application component like b
 Here's the [framework7 repository](https://github.com/framework7io/framework7) that offers the VueJS [kitchen sink](https://github.com/framework7io/framework7/tree/master/kitchen-sink) boiler plate. 
 
 > I don't have kids, but that will certainly by the sentence that I'll repeat the most: Do what I say and NOT what I do! ;-)
->
+
 > My project is build on this [repository](https://github.com/caiobiodere/cordova-template-framework7-vue-webpack). ATM,  I am still strugglin with certain cordova plugins. There's a lot of work around though. Still, I is necessary to be able to use it. I'll update this post as soon as this `issues` will be closed.
 
 
-First thing first, make sure you start building on a solid foundation ;-). [Webpack](https://webpack.js.org) is a [npm](https://www.npmjs.com/) library that let's you bundle up all the dependencies of the project.
+First thing first, make sure you start building on a solid foundation ;-). [Webpack](https://webpack.js.org) is a [npm](https://www.npmjs.com/) library that let you bundle up all the dependencies of a JS project. Since this project will be handling a lot of depency and framework, I strongly recommand using it.
 
 ![webpack](/assets/images/webpack.jpg)
 
 __The following commands are for the repository that I used, which includes webpack.__
 
-#### Pro tip: Do NOT use `npm` with sudo privilege. It's not necessary and might create dependency conflicts.
+#### Pro tip: Do NOT use `npm` with sudo privilege. It's not necessary and might creates dependency conflicts.
 
 ```bash
 npm i -g cordova # install cordova localy
 git clone https://github.com/caiobiodere/cordova-template-framework7-vue-webpack && cordova-template-framework7-vue-webpack/template_src
 npm i # install the dependencies from package.json
 cordova platform add browser ios android
+cordova prepare # or cordova build
+```
+> FMPOV, the best to develop is to run the envionement in a browser. That way, you can easily console.log and see the error in the console (F12).
+
+```
 cordova run browser --verbose -- --lr # open the app in a browser with Live Reload
 ```
-> So far, nothing is incredible except Webpack that is really useful on the long run. Let's get into more technical details!
 
+If you want to develop and test in an emulator, you need to download and install SDK tools. Cordova covers those [steps](https://cordova.apache.org/docs/fr/latest/guide/platforms/android/index.html#installer-le-sdk-android) for both platforms. The installations are a bit a pain in the ass though!
+
+#### Pro tip: if you are not running on a Mac, you can spin [Mac OS X Lion](https://www.hackintosh.computer/199/direct-download-macos/) in a VM:
+
+> At this point you should be able to run your boiler plate in a developement environement (browser, Android SDK, )
 <br>
 
+- CORS Request
+- PopUps (interactive)
+- Promises
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To make it sign by Google Play:
+
+```
+cordova build android --release
+cp /home/srbz/freeTattoo/app_freeTattoo/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk app.apk
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore mySuperKey.keystore app.apk alias_name
+cp app.apk ~/
+ls -ltr ~/
+```

@@ -200,15 +200,15 @@
 
 <p><img src="/assets/images/gohead.jpeg" alt="" /></p>
 
-<h3 id="its-when-i-started-searching-for-a-cross-platform-solution-that-i-met-cordova">It’s when I started searching for a cross platform solution that I met <a href="https://cordova.apache.org/">cordova</a>.</h3>
-
 <blockquote>
-  <p>Mobile apps with HTML, CSS &amp; JS</p>
-
-  <p>Target multiple platforms with one code base</p>
-
-  <p>Free and open source</p>
+  <p>It’s when I started searching for a cross platform solution that I met <a href="https://cordova.apache.org/">cordova</a>.</p>
 </blockquote>
+
+<ul>
+  <li>Mobile apps with HTML, CSS &amp; JS</li>
+  <li>Target multiple platforms with one code base</li>
+  <li>Free and open source</li>
+</ul>
 
 <p><img src="/assets/images/logo_cordova_phonegap.jpg" alt="logo" /></p>
 
@@ -245,6 +245,8 @@
   <li>Quasar</li>
 </ul>
 
+<p><img src="/assets/images/legit.jpg" alt="legit" /></p>
+
 <blockquote>
   <p>Since I wanted to optimize the approach, I made my choice in function of the HTML framework that was supported at this time. I heard good comments about VueJS performances. Since <code class="highlighter-rouge">Ionic 4</code> and <code class="highlighter-rouge">Quasar</code> offer it only in a beta version, I had to go with <code class="highlighter-rouge">Framework 7 v.3.2</code></p>
 </blockquote>
@@ -263,30 +265,56 @@
 
 <blockquote>
   <p>I don’t have kids, but that will certainly by the sentence that I’ll repeat the most: Do what I say and NOT what I do! ;-)</p>
+</blockquote>
 
+<blockquote>
   <p>My project is build on this <a href="https://github.com/caiobiodere/cordova-template-framework7-vue-webpack">repository</a>. ATM,  I am still strugglin with certain cordova plugins. There’s a lot of work around though. Still, I is necessary to be able to use it. I’ll update this post as soon as this <code class="highlighter-rouge">issues</code> will be closed.</p>
 </blockquote>
 
-<p>First thing first, make sure you start building on a solid foundation ;-). <a href="https://webpack.js.org">Webpack</a> is a <a href="https://www.npmjs.com/">npm</a> library that let’s you bundle up all the dependencies of the project.</p>
+<p>First thing first, make sure you start building on a solid foundation ;-). <a href="https://webpack.js.org">Webpack</a> is a <a href="https://www.npmjs.com/">npm</a> library that let you bundle up all the dependencies of a JS project. Since this project will be handling a lot of depency and framework, I strongly recommand using it.</p>
 
 <p><img src="/assets/images/webpack.jpg" alt="webpack" /></p>
 
 <p><strong>The following commands are for the repository that I used, which includes webpack.</strong></p>
 
-<h4 id="pro-tip-do-not-use-npm-with-sudo-privilege-its-not-necessary-and-might-create-dependency-conflicts">Pro tip: Do NOT use <code class="highlighter-rouge">npm</code> with sudo privilege. It’s not necessary and might create dependency conflicts.</h4>
+<h4 id="pro-tip-do-not-use-npm-with-sudo-privilege-its-not-necessary-and-might-creates-dependency-conflicts">Pro tip: Do NOT use <code class="highlighter-rouge">npm</code> with sudo privilege. It’s not necessary and might creates dependency conflicts.</h4>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i <span class="nt">-g</span> cordova <span class="c"># install cordova localy</span>
 git clone https://github.com/caiobiodere/cordova-template-framework7-vue-webpack <span class="o">&amp;&amp;</span> cordova-template-framework7-vue-webpack/template_src
 npm i <span class="c"># install the dependencies from package.json</span>
 cordova platform add browser ios android
-cordova run browser <span class="nt">--verbose</span> <span class="nt">--</span> <span class="nt">--lr</span> <span class="c"># open the app in a browser with Live Reload</span>
+cordova prepare <span class="c"># or cordova build</span>
 </code></pre></div></div>
 <blockquote>
-  <p>So far, nothing is incredible except Webpack that is really useful on the long run. Let’s get into more technical details!</p>
+  <p>FMPOV, the best to develop is to run the envionement in a browser. That way, you can easily console.log and see the error in the console (F12).</p>
 </blockquote>
 
-<p><br /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cordova run browser --verbose -- --lr # open the app in a browser with Live Reload
+</code></pre></div></div>
 
+<p>If you want to develop and test in an emulator, you need to download and install SDK tools. Cordova covers those <a href="https://cordova.apache.org/docs/fr/latest/guide/platforms/android/index.html#installer-le-sdk-android">steps</a> for both platforms. The installations are a bit a pain in the ass though!</p>
+
+<h4 id="pro-tip-if-you-are-not-running-on-a-mac-you-can-spin-mac-os-x-lion-in-a-vm">Pro tip: if you are not running on a Mac, you can spin <a href="https://www.hackintosh.computer/199/direct-download-macos/">Mac OS X Lion</a> in a VM:</h4>
+
+<blockquote>
+  <p>At this point you should be able to run your boiler plate in a developement environement (browser, Android SDK, )
+<br /></p>
+</blockquote>
+
+<ul>
+  <li>CORS Request</li>
+  <li>PopUps (interactive)</li>
+  <li>Promises</li>
+</ul>
+
+<p>To make it sign by Google Play:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cordova build android --release
+cp /home/srbz/freeTattoo/app_freeTattoo/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk app.apk
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore mySuperKey.keystore app.apk alias_name
+cp app.apk ~/
+ls -ltr ~/
+</code></pre></div></div>
 
 
   <h2>Latest Posts</h2>
