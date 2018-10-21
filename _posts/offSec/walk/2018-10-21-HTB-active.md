@@ -17,7 +17,7 @@ category: [offsec]
 
 > __TL;DR__
 >
-> Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPP. I can't execute commands, so I created a paquets to get a TGS from the CIFS service account and cracked the password. That gives me access to the Admin on this KDC! 
+> Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPP. I can't execute commands, so I created paquets to get a TGS from the CIFS service account and cracked the password. That gives me access as Administrator on this KDC.. game over! 
 
 #### Scanning
 
