@@ -11,11 +11,14 @@ layout: default
   <div>&nbsp;</div>
 
   <ul class="post-list">
-    {% for post in site.categories.dev %}
+      <h3>OffSec</h3>
+    {% for post in site.categories.offsec %}
       - <a href="{{ post.url }}">{{ post.title }}</a>
       <br>
     {% endfor %}
-    {% for post in site.categories.offsec %}
+    <br>
+      <h3>Dev</h3>
+    {% for post in site.categories.dev %}
       - <a href="{{ post.url }}">{{ post.title }}</a>
       <br>
     {% endfor %}
