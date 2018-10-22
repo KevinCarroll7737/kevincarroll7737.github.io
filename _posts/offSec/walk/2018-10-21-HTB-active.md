@@ -18,7 +18,7 @@ category: [offsec]
 
 > __TL;DR__
 >
-> Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPO. It was impossible to execute commands, so I created paquets to get a TGS for the CIFS service account and cracked the password. That gave me access as Administrator on this KDC.. game over! 
+> Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPO. It was impossible to execute commands, so I created paquets to get am arcfour encrypted TGS for the CIFS service account and cracked the password. That gave me access as Administrator on this KDC.. game over! 
 
 #### Scanning
 
@@ -203,7 +203,7 @@ Then, with an SPN and a TGT, I can create a TGS-REQ. The great thing about a TGS
 <img src="/assets/images/impacket_GetUserSPNs.png" style="height: 100%; width: auto">
 
 
-Here we see that before requesting the TGS for a particular SPN, Impacket makes an (AS_REQ) Authentication Server Request and that the server responds with the TGT for this SVC_TGS service account.
+Here we see that before requesting the TGS for a particular SPN, Impacket makes an (AS_REQ) Authentication Server Request and that the server responds with the TGT for this SVC_TGS service account. __Note__ that the krbtgt doesn't use the same encryption as the following TGS.
 
 <img src="/assets/images/AS_REQ.png" style="height: 100%; width: auto">
 
