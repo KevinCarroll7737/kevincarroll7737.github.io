@@ -18,7 +18,7 @@ category: [offsec]
 
 > __TL;DR__
 >
-> Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPO. It was impossible to execute commands, so I created paquets to get am arcfour encrypted TGS for the CIFS service account and cracked the password. That gave me access as Administrator on this KDC.. game over! 
+> Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPO. It was impossible to execute commands, so I created paquets to get an arcfour TGS for the CIFS service account and cracked the password. That gave me access as Administrator on this KDC.. game over! 
 
 #### Scanning
 
