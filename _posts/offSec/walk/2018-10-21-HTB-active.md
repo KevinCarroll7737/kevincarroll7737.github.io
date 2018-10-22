@@ -13,7 +13,7 @@ category: [offsec]
 + smbclient
 + gpocrack
 + smbspider
-+ ImPacket
++ Impacket
 
 
 > __TL;DR__
