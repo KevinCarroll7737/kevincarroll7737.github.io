@@ -211,6 +211,8 @@ Then Impacket makes a TGS request that includes TGT information. Finally, the se
 
 <img src="/assets/images/TGS_REQ.png" style="height: 100%; width: auto">
 
+<img src="/assets/images/kdc.png" style="height: 100%; width: auto">
+
 ```xml
 $krb5tgs$<ENCRYPTION_TYPE>$*<USERNAME>$<REALM>$<SPN>*$<FIRST_16_BYTES_TICKET>$<REMAINING_TICKET_BYTES>
 ```
