@@ -11,14 +11,13 @@ category: [offsec]
 
 + enum4linux
 + smbclient
-+ gpocrack
-+ smbspider
-+ Impacket
++ smbspyder
++ ImPacket
 
 
 > __TL;DR__
 >
-> Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPO. I can't execute commands, so I created paquets to get a TGS for the CIFS service account and cracked the password. That gave me Administrator access on this KDC.. game over! 
+> Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPP. I can't execute commands, so I created paquets to get a TGS for the CIFS service account and cracked the password. That gives me access as Administrator on this KDC.. game over! 
 
 #### Scanning
 
@@ -191,8 +190,6 @@ smbspider.py -u SVC_TGS -p GPPstillStandingStrong2k18 -h 10.10.10.100 -s Users
 Completed in: 46.9s
 
 ```
-
-<img src="/assets/images/kerberos.jpg" style="height: 100%; width: auto">
 
 > Ok, let's tease a bit that three heads bastard! ;) 
 
