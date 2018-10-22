@@ -192,6 +192,8 @@ Completed in: 46.9s
 
 ```
 
+<img src="/assets/images/kerberos.jpg" style="height: 100%; width: auto">
+
 > Ok, let's tease a bit that three heads bastard! ;) 
 
 Since I have found valid credentials for the SVC_TGS service, I can ask kerberos for more; Request a legitimate TGT and which service(s) this account can use. Although I can't execute commands as SVC_TGS with CME, I'm able to create packets with [impacket ](https://github.com/SecureAuthCorp/impacket) as if I were executing `ps> klist` on the machine for example. This would give me the name(s) of the (SPNs)service principal name(s) to which the SVC_TGS account has access. 
