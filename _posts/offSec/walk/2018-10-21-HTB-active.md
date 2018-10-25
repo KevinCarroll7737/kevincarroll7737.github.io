@@ -18,7 +18,7 @@ category: [offsec]
 
 > __TL;DR__
 >
-> Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPO. It was impossible to execute commands, so I created paquets to get an arcfour TGS for the CIFS service account and cracked the password. That gave me access as Administrator on this KDC.. game over! 
+> Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPO. It was impossible to execute commands, so I created paquets to get an arcfour (RC4) TGS for the CIFS service account and cracked the password. That gave me access as Administrator on this KDC.. game over! 
 
 #### Scanning
 
@@ -196,14 +196,14 @@ Completed in: 46.9s
 
 <img src="/assets/images/kerberos.jpg" style="height: 100%; width: auto">
 
-Since I have found valid credentials for the SVC_TGS service, I can ask kerberos for more; Request a legitimate TGT and which service(s) this account can use. Although I can't execute commands as SVC_TGS with CME, I'm able to create packets with [impacket ](https://github.com/SecureAuthCorp/impacket) as if I were executing `ps> klist` on the machine for example. This would give me the name(s) of the (SPNs)service principal name(s) to which the SVC_TGS account has access. 
+Since I have found valid credentials for the SVC_TGS service, I can ask kerberos for more; Request a legitimate TGT and which service(s) this account can use. Although I can't execute commands as SVC_TGS with CME, I'm able to create packets with [impacket ](https://github.com/SecureAuthCorp/impacket) as if I were executing `ps> kinit` on the machine for example. This would give me the name(s) of the (SPNs)service principal name(s) to which the SVC_TGS account has access. 
 
-Then, with an SPN and a TGT, I can create a TGS-REQ. The great thing about a TGS is that it allows you to crack the service password offline. Yeah! ;) 
+Then, with an SPN and a TGT, I can create a TGS-REQ ans send it to Kerberos. The great thing about a TGS is that it allows you to crack the service's password offline. Yeah! ;) 
 
 <img src="/assets/images/impacket_GetUserSPNs.png" style="height: 100%; width: auto">
 
 
-Here we see that before requesting the TGS for a particular SPN, Impacket makes an (AS_REQ) Authentication Server Request and that the server responds with the TGT for this SVC_TGS service account. __Note__ that the krbtgt doesn't use the same encryption as the following TGS.
+Here we see that before requesting the TGS for a particular SPN, Impacket makes an (AS_REQ) Authentication Server Request and that the server responds with the TGT for this SVC_TGS service account. __Note that the krbtgt doesn't use the same encryption as the following TGS.__
 
 <img src="/assets/images/AS_REQ.png" style="height: 100%; width: auto">
 
