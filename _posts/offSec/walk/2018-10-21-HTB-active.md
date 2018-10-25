@@ -192,7 +192,7 @@ Completed in: 46.9s
 
 ```
 
-> Ok, let's tease a bit that three heads bastard! ;) 
+> Ok now let's play with that three heads bastard! ;) 
 
 <img src="/assets/images/kerberos.jpg" style="height: 100%; width: auto">
 
