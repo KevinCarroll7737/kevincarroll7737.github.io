@@ -98,7 +98,7 @@ To come:
 - PopUps (interactive)
 - Promises
 
-To make it sign by Google Play:
+Before making it sign by Google Play:
 
     cordova build android --release
     cp /home/srbz/freeTattoo/app_freeTattoo/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk app.apk
