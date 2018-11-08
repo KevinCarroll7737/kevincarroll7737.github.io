@@ -3,27 +3,28 @@ layout: dev
 categories: [dev]
 ---
 
-> I've been ask by a sponsor to develop a slot machine mobile application. I wasn't sure if I should accept it since I never develop a whole project from scratch. So I made some researches on the upstream and found many solutions which I tought could be realist for me and accepted the deal.
+> I've been ask by a sponsor to develop a slot machine mobile application. I wasn't sure if I should accept since I never develop a whole project from scratch. So I made some researches on the upstream and found bunch of frameworks and Git repos which made me I think that it coul be realist for me. So I closed the deal.
 
-This article will walk you trough this journey. Hopefuly, it will guide you where I found my self a lost. Let's be honest, I am NOT a senior full stack developer and the main reason why I accepted to make this project, is to learn. I encourage everyone to do so :-)
+This article will walk you trough this journey. Hopefuly, it will guide you where I found my self lost... Let's be honest, I am NOT a senior full stack developer and the main reason why I accepted to make this project, was to grow and learn. I encourage everyone to do so :-)
 
 ![](/assets/images/gohead.jpeg)
 
-> It's when I started searching for a cross platform solution that I met [cordova](https://cordova.apache.org/). 
+> It's when I started searching for a cross platform solution that I met [Cordova](https://cordova.apache.org/). 
 
 + Mobile apps with HTML, CSS & JS
 + Target multiple platforms with one code base
 + Free and open source
 
-![logo](/assets/images/logo_cordova_phonegap.jpg)
+<img style="width: 100%; height: auto" src="/assets/images/logo_cordova_phonegap.jpg" >
 
 This framework do NOT transpile your HTML base project into a native languague. It simply creates an application that is aloud to run in a `WebView`. Thus, these applications are called `hybrid` not `native`.
 
-![chart](/assets/images/cordova_chart.jpg)
+
+<img style="width: 100%; height: auto" src="/assets/images/cordova_chart.jpg" >
 
 Essentially, Cordova Appache only runs a server localy which contains all the pages of your application and uses the platform's libraries to render it as HTML or to run native functionality.
 
-![server](/assets/images/cordova_server.jpg)
+<img style="width: 100%; height: auto" src="/assets/images/cordova_server.jpg" >
 
 > Everything has its limit. Apache Cordova applications are slower than native applications of course. Still, here is a list of known companies that are using it:
 
@@ -46,13 +47,14 @@ It exists a bunch of frameworks that provide mobile application component like b
 + Framework7
 + Quasar
 
-![legit](/assets/images/legit.jpg)
+<img style="width: 100%; height: auto" src="/assets/images/legit.jpg" >
 
 > Since I wanted to optimize the approach, I made my choice in function of the HTML framework that was supported at this time. I heard good comments about VueJS performances. Since `Ionic 4` and `Quasar` offer it only in a beta version, I had to go with `Framework 7 v.3.2`
 
 [VueJS](https://vuejs.org) seems to offer a better and cleaner templating, state management and documentation than React, but it also offers a better learning curve.
 
-![vuejs](/assets/images/vuejs.jpg)
+
+<img style="width: 100%; height: auto" src="/assets/images/vuejs.jpg" >
 
 > Here's my first advice, when you start a project make sure to fork the right repository hehe! I would say, look for the one that is provided by the actual framework. That way, it will be references a lot more on the support pages.
 
@@ -73,18 +75,15 @@ __The following commands are for the repository that I used, which includes webp
 
 #### Pro tip: Do NOT use `npm` with sudo privilege. It's not necessary and might creates dependency conflicts.
 
-```bash
-npm i -g cordova # install cordova localy
-git clone https://github.com/caiobiodere/cordova-template-framework7-vue-webpack && cordova-template-framework7-vue-webpack/template_src
-npm i # install the dependencies from package.json
-cordova platform add browser ios android
-cordova prepare # or cordova build
-```
+    npm i -g cordova # install cordova localy
+    git clone https://github.com/caiobiodere/cordova-template-framework7-vue-webpack && cordova-template-framework7-vue-webpack/template_src
+    npm i # install the dependencies from package.json
+    cordova platform add browser ios android
+    cordova prepare # or cordova build
+
 > FMPOV, the best to develop is to run the envionement in a browser. That way, you can easily console.log and see the error in the console (F12).
 
-```
-cordova run browser --verbose -- --lr # open the app in a browser with Live Reload
-```
+    cordova run browser --verbose -- --lr # open the app in a browser with Live Reload
 
 If you want to develop and test in an emulator, you need to download and install SDK tools. Cordova covers those [steps](https://cordova.apache.org/docs/fr/latest/guide/platforms/android/index.html#installer-le-sdk-android) for both platforms. The installations are a bit a pain in the ass though!
 
@@ -93,51 +92,16 @@ If you want to develop and test in an emulator, you need to download and install
 > At this point you should be able to run your boiler plate in a developement environement (browser, Android SDK, )
 <br>
 
+To come:
+
 - CORS Request
 - PopUps (interactive)
 - Promises
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 To make it sign by Google Play:
 
-```
-cordova build android --release
-cp /home/srbz/freeTattoo/app_freeTattoo/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk app.apk
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore mySuperKey.keystore app.apk alias_name
-cp app.apk ~/
-ls -ltr ~/
-```
+    cordova build android --release
+    cp /home/srbz/freeTattoo/app_freeTattoo/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk app.apk
+    jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore mySuperKey.keystore app.apk alias_name
+    cp app.apk ~/
+    ls -ltr ~/
