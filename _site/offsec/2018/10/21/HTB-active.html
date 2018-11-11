@@ -205,14 +205,15 @@
 <ul>
   <li>enum4linux</li>
   <li>smbclient</li>
-  <li>smbspyder</li>
-  <li>ImPacket</li>
+  <li>gpocrack</li>
+  <li>smbspider</li>
+  <li>Impacket</li>
 </ul>
 
 <blockquote>
   <p><strong>TL;DR</strong></p>
 
-  <p>Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPP. I can’t execute commands, so I created paquets to get a TGS for the CIFS service account and cracked the password. That gives me access as Administrator on this KDC.. game over!</p>
+  <p>Pwing a KDC by taking foothold with the cPassword identifiers found in an old GPO. It was impossible to execute commands, so I created paquets to get an arcfour (RC4) TGS for the CIFS service account and cracked the password. That gave me access as Administrator on this KDC.. game over!</p>
 </blockquote>
 
 <h4 id="scanning">Scanning</h4>
@@ -384,22 +385,26 @@ CME          10.10.10.100:445 DC              Users           READ
 </code></pre></div></div>
 
 <blockquote>
-  <p>Ok, let’s tease a bit that three heads bastard! ;)</p>
+  <p>Ok now let’s play with that three heads bastard! ;)</p>
 </blockquote>
+
+<p><img src="/assets/images/kerberos.jpg" style="height: 100%; width: auto" /></p>
 
 <p>Since I have found valid credentials for the SVC_TGS service, I can ask kerberos for more; Request a legitimate TGT and which service(s) this account can use. Although I can’t execute commands as SVC_TGS with CME, I’m able to create packets with <a href="https://github.com/SecureAuthCorp/impacket">impacket </a> as if I were executing <code class="highlighter-rouge">ps&gt; klist</code> on the machine for example. This would give me the name(s) of the (SPNs)service principal name(s) to which the SVC_TGS account has access.</p>
 
-<p>Then, with an SPN and a TGT, I can create a TGS-REQ. The great thing about a TGS is that it allows you to crack the service password offline. Yeah! ;)</p>
+<p>Then, with an SPN and a TGT, I can create a TGS-REQ ans send it to Kerberos. The great thing about a TGS is that it allows you to crack the service’s password offline. Yeah! ;)</p>
 
 <p><img src="/assets/images/impacket_GetUserSPNs.png" style="height: 100%; width: auto" /></p>
 
-<p>Here we see that before requesting the TGS for a particular SPN, Impacket makes a (AS_REQ) Authentication Server Request and that the server responds with the TGT for the SVC_TGS service account.</p>
+<p>Here we see that before requesting the TGS for a particular SPN, Impacket makes an (AS_REQ) Authentication Server Request and that the server responds with the TGT for this SVC_TGS service account. <strong>Note that the krbtgt doesn’t use the same encryption that the following TGS.</strong></p>
 
 <p><img src="/assets/images/AS_REQ.png" style="height: 100%; width: auto" /></p>
 
 <p>Then Impacket makes a TGS request that includes TGT information. Finally, the server responds with a TGS and Impacket format it in <code class="highlighter-rouge">krb5tgs</code> which is recognized by JTR and HC.</p>
 
 <p><img src="/assets/images/TGS_REQ.png" style="height: 100%; width: auto" /></p>
+
+<p><img src="/assets/images/kdc.png" style="height: 100%; width: auto" /></p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$krb5tgs$<span class="nt">&lt;ENCRYPTION_TYPE&gt;</span>$*<span class="nt">&lt;USERNAME&gt;</span>$<span class="nt">&lt;REALM&gt;</span>$<span class="nt">&lt;SPN&gt;</span>*$<span class="nt">&lt;FIRST_16_BYTES_TICKET&gt;</span>$<span class="nt">&lt;REMAINING_TICKET_BYTES&gt;</span>
 </code></pre></div></div>

@@ -24,7 +24,7 @@ This framework do NOT transpile your HTML base project into a native languague. 
 
 Essentially, Cordova Appache only runs a server localy which contains all the pages of your application and uses the platform's libraries to render it as HTML or to run native functionality.
 
-<img style="width: 100%; height: auto" src="/assets/images/cordova_server.jpg" >
+<img style="width: 70%; height: auto" src="/assets/images/cordova_server.jpg" >
 
 > Everything has its limit. Apache Cordova applications are slower than native applications of course. Still, here is a list of known companies that are using it:
 
@@ -47,14 +47,14 @@ It exists a bunch of frameworks that provide mobile application component like b
 + Framework7
 + Quasar
 
-<img style="width: 100%; height: auto" src="/assets/images/legit.jpg" >
+<img style="width: 70%; height: auto" src="/assets/images/legit.jpg" >
 
 > Since I wanted to optimize the approach, I made my choice in function of the HTML framework that was supported at this time. I heard good comments about VueJS performances. Since `Ionic 4` and `Quasar` offer it only in a beta version, I had to go with `Framework 7 v.3.2`
 
 [VueJS](https://vuejs.org) seems to offer a better and cleaner templating, state management and documentation than React, but it also offers a better learning curve.
 
 
-<img style="width: 100%; height: auto" src="/assets/images/vuejs.jpg" >
+<img style="width: 70%; height: auto" src="/assets/images/vuejs.jpg" >
 
 > Here's my first advice, when you start a project make sure to fork the right repository hehe! I would say, look for the one that is provided by the actual framework. That way, it will be references a lot more on the support pages.
 
@@ -69,7 +69,7 @@ Here's the [framework7 repository](https://github.com/framework7io/framework7) t
 
 First thing first, make sure you start building on a solid foundation ;-). [Webpack](https://webpack.js.org) is a [npm](https://www.npmjs.com/) library that let you bundle up all the dependencies of a JS project. Since this project will be handling a lot of depency and framework, I strongly recommand using it.
 
-![webpack](/assets/images/webpack.jpg)
+<img src="/assets/images/webpack.jpg" style="width: 100%; height: auto">
 
 __The following commands are for the repository that I used, which includes webpack.__
 
@@ -87,18 +87,118 @@ __The following commands are for the repository that I used, which includes webp
 
 If you want to develop and test in an emulator, you need to download and install SDK tools. Cordova covers those [steps](https://cordova.apache.org/docs/fr/latest/guide/platforms/android/index.html#installer-le-sdk-android) for both platforms. The installations are a bit a pain in the ass though!
 
-#### Pro tip: if you are not running on a Mac, you can spin [Mac OS X Lion](https://www.hackintosh.computer/199/direct-download-macos/) in a VM:
+#### Pro tip: if you are not a Mac user, you can spin [Mac OS X Lion](https://www.hackintosh.computer/199/direct-download-macos/) in a VM:
 
 > At this point you should be able to run your boiler plate in a developement environement (browser, Android SDK, )
+
 <br>
 
-To come:
+#### Firebase Functions: HTTP Request
 
-- CORS Request
-- PopUps (interactive)
-- Promises
+It might be a bit abstract for you, but in fact this project has a client side REST application server, its DB is in the cloud and you can call simples HTTPs GET request to process data... lol! 
 
-Before making it sign by Google Play:
+Here's how to manage these HTTPs requests sent to the firebase backend.
+
+<img style="width: 70%; height: auto" src="/assets/images/goat.jpeg" >
+
+> Let's make this simple:
+
++ Every `functions.https.onRequest()` has to send a response (i.e.: `res.send('Your Response')`).
++ The exports method is what Firebase use as referer.
++ Simply go to Firebase > Functions > Dashboard, and copy the associated URL to call it..
++ Simply pass the parameter as regular backend PHP POST request (i.e.: `https://ASSOCIATED_URL?REQ_PARAM_1&REQ_PARAM_2&REQ_PARAM_n`).
+
+```js
+// Constants init
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+admin.initializeApp();
+
+const cors = require('cors'); // Allows cross origin requests
+const stripe = require('stripe')(functions.config().stripe.token);  // Securely use Stripe token (optional)
+
+/**
+ * Stripe Connect (Standard) API
+ *
+ * Listen for new POST of Stripe. 
+ * Add the "acct" to the appropriate shop in the DB.
+ *
+ */
+var confirmMail = function confirmMail(req, res){
+
+    const q = req.query
+
+    // Error
+    if (q.error){
+        res.send(q.error_description)    
+    // No Error
+    } else {
+                                                                                                       
+        res.send("Succes: 200")
+    }   
+
+
+}    
+
+exports.stripeConnect= functions.https.onRequest((req, res) => {
+    var corsFn = cors();
+    corsFn(req, res, function() {
+        stripeConnect(req, res);
+    }); 
+})
+
+```
+
+"The Same-Origin Policy (SOP) might be too restrictive for large applications that use, for example, multiple subdomains.  There are a number of techniques for relaxing the SOP in a controlled manner. One of these techniques is the Cross-Origin Resource Sharing (CORS)."
+
+> In other words, client side needs to process information from another server. Most of the time this formation is a JSON response. For more infos on that subject go read [this](https://www.bedefended.com/papers/cors-security-guide).
+
+
+<img style="width: 100%; height: auto" src="/assets/images/firebase.jpg" >
+
+Finaly, in `app/config.xml` modify `<access origin=...>` to fits your need! ;)
+
+#### JavaScript Promises:
+
+> This is the easiest thing in the world, but there's so many ECMAScript versions that exist. So I decided to add this topic ;)
+
+Promises are essential when communicating with the backend. This is what tells the frontend to wait for the ressources to be received before processing and rendering.
+
++ 4th Edition (abandoned) ...
++ 5th Edition. ...
++ 6th Edition - ECMAScript 2015. ...
++ 7th Edition - ECMAScript 2016. ...
++ 8th Edition - ECMAScript 2017. ...
++ 9th Edition - ECMAScript 2018.
+
+For the stake of this post, I will be covering ES8 (ECMAscript 2017) which is a lot intuitive than promises in ES7.
+
+```js
+function fetchJson(url) {
+    return fetch(url)
+    .then(request => request.text())
+    .then(text => {
+        return JSON.parse(text);
+    })
+    .catch(error => {
+        console.log(`ERROR: ${error.stack}`);
+    });
+}
+fetchJson('http://example.com/some_file.json')
+.then(obj => console.log(obj));
+```
+
+The following variants of async functions exist:
+
+    Async function declarations: async function foo() {}
+    Async function expressions: const foo = async function () {};
+    Async method definitions: let obj = { async foo() {} }
+    Async arrow functions: const foo = async () => {};
+
+
+#### Before having it sign by Google Play:
+
+For security, it is essential the having you application sign. An unsign application might be blocked by other applications. 
 
     cordova build android --release
     cp /home/srbz/freeTattoo/app_freeTattoo/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk app.apk
