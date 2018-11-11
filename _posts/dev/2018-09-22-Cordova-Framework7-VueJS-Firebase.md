@@ -95,7 +95,7 @@ If you want to develop and test in an emulator, you need to download and install
 
 ## Firebase Functions: HTTP Request
 
-It might be a bit abstract for you, but in fact this project has a client side REST application server, its DB is in the cloud and you can call simples HTTPs GET request to process data... lol! 
+It might be a bit abstract for you, but in fact this project has a client side REST application server, its DB is in the cloud and you can call simple HTTPs GET requests to process data... lol! 
 
 Here's how to manage these HTTPs requests sent to the firebase backend.
 
