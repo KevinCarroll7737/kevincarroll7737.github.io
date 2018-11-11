@@ -36,7 +36,7 @@ Essentially, Cordova Appache only runs a server localy which contains all the pa
 + Zynga. ...
 + Logitech.
 
-### How to create an application that looks like an application?
+## How to create an application that looks like an application?
 
 
 It exists a bunch of frameworks that provide mobile application component like buttons, chips, notifications, etc. Here's a list of the most popular frameworks that offer that!
@@ -93,7 +93,7 @@ If you want to develop and test in an emulator, you need to download and install
 
 <br>
 
-#### Firebase Functions: HTTP Request
+## Firebase Functions: HTTP Request
 
 It might be a bit abstract for you, but in fact this project has a client side REST application server, its DB is in the cloud and you can call simples HTTPs GET request to process data... lol! 
 
@@ -158,7 +158,7 @@ exports.stripeConnect= functions.https.onRequest((req, res) => {
 
 Finaly, in `app/config.xml` modify `<access origin=...>` to fits your need! ;)
 
-#### JavaScript Promises:
+## JavaScript Promises:
 
 > This is the easiest thing in the world, but there's so many ECMAScript versions that exist. So I decided to add this topic ;)
 
@@ -196,7 +196,7 @@ The following variants of async functions exist:
     Async arrow functions: const foo = async () => {};
 
 
-#### Before having it sign by Google Play:
+## Before having it sign by Google Play:
 
 For security, it is essential the having you application sign. An unsign application might be blocked by other applications. 
 
