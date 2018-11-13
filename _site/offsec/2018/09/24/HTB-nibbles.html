@@ -224,10 +224,6 @@ Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up
 
 <p>As always, let’s start exploring the HTTP application running on port 80.</p>
 
-<p><img src="/assets/images/75_index.html.png" alt="" /></p>
-
-<p><img src="/assets/images/75_index.source.png" alt="" /></p>
-
 <p>Well, nothing interesting there.. Let’s use <a href="https://tools.kali.org/web-applications/dirb">dirb</a> to bruteforce all common known directories as so <code class="highlighter-rouge">dirb 10.10.10.75/nibbleblog/</code></p>
 
 <p><strong>Note: I created a function for calling dirb:</strong></p>
@@ -249,8 +245,6 @@ Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up
 
 <p><code class="highlighter-rouge">password: nibbles</code></p>
 
-<p><img src="/assets/images/75_blog.png" alt="" /></p>
-
 <p><br /></p>
 
 <h2 id="maintaining-access">Maintaining Access:</h2>
@@ -258,8 +252,6 @@ Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up
 <p><br /></p>
 
 <p>Once logged in, we can upload files by using the plugin<code class="highlighter-rouge">my_image.</code> The vulnerability of that plugin is that it does not verrify the file extension. So, I uploaded my <a href="https://github.com/KevinCarroll7737/tools/blob/master/shell.php">shell.php</a></p>
-
-<p><img src="/assets/images/75_upload.png" alt="" /></p>
 
 <p>By running <a href="https://github.com/KevinCarroll7737/tools/blob/master/linenum.sh">linEnum.sh</a>, I’ve been able to see fast and clearly which files the user <code class="highlighter-rouge">nibbler</code> had the control of.</p>
 
@@ -294,6 +286,9 @@ b02ff32bb332deba49eeaed21152c8d8
   <h2>Latest Posts</h2>
 
   <ul class="post-list">
+    
+      - <a href="/offsec/2018/11/13/HTB-curling.html"> Htb Curling</a>
+      <br>
     
       - <a href="/offsec/2018/10/21/HTB-active.html"> Htb Active</a>
       <br>

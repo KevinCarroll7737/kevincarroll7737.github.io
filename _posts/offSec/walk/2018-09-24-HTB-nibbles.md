@@ -33,10 +33,6 @@ Nmap done: 1 IP address (1 host up) scanned in 21.39 seconds
 
 As always, let's start exploring the HTTP application running on port 80.
 
-![](/assets/images/75_index.html.png)
-
-![](/assets/images/75_index.source.png)
-
 Well, nothing interesting there.. Let's use <a href='https://tools.kali.org/web-applications/dirb'>dirb</a> to bruteforce all common known directories as so `dirb 10.10.10.75/nibbleblog/`
 
 
@@ -61,7 +57,6 @@ Apparently, there's no other way to login than guessing. Hack the box usually us
 
 `password: nibbles`
 
-![](/assets/images/75_blog.png)
 
 <br>
 
@@ -71,7 +66,6 @@ Apparently, there's no other way to login than guessing. Hack the box usually us
 
 Once logged in, we can upload files by using the plugin`my_image.` The vulnerability of that plugin is that it does not verrify the file extension. So, I uploaded my <a href='https://github.com/KevinCarroll7737/tools/blob/master/shell.php'>shell.php</a>
 
-![](/assets/images/75_upload.png)
 
 By running <a href='https://github.com/KevinCarroll7737/tools/blob/master/linenum.sh'>linEnum.sh</a>, I've been able to see fast and clearly which files the user `nibbler` had the control of.
 
