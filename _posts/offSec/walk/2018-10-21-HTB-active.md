@@ -117,7 +117,7 @@ smb: \SVC_TGS\Desktop\> get user.txt
 
 ## PrivEsc:
 
-> This box was not trivial. You cannot simply execute commands with CME. In addition, the new access on the SMB sharing with the identifiers found were a rabbit hole.
+> This box was not trivial. You couldn't simply execute commands with CME. In addition, the new access on the SMB sharing with the identifiers found were a rabbit hole.
 
 ```
 crackmapexec 10.10.10.100 -u SVC_TGS -p "GPPstillStandingStrong2k18" --shares  
@@ -151,48 +151,10 @@ smbspider.py -u SVC_TGS -p GPPstillStandingStrong2k18 -h 10.10.10.100 -s Users
 
  [*] Spidering 1 system(s)...
 
- [*] Attempting to spider smb://10.10.10.100/Users 
- [*] \\10.10.10.100\Users\desktop.ini
- [*] \\10.10.10.100\Users\All Users\ATUS_STOPPED_ON_SYMLINK listing \All Users\
- [*] \\10.10.10.100\Users\Default\NTUSER.DAT
- [*] \\10.10.10.100\Users\Default\NTUSER.DAT.LOG
- [*] \\10.10.10.100\Users\Default\NTUSER.DAT.LOG1
- [*] \\10.10.10.100\Users\Default\NTUSER.DAT.LOG2
- [*] \\10.10.10.100\Users\Default\NTUSER.DAT{016888bd-6c6f-11de-8d1d-001e0bcde3ec}.TM.blf
- [*] \\10.10.10.100\Users\Default\NTUSER.DAT{016888bd-6c6f-11de-8d1d-001e0bcde3ec}.TMContainer00000000000000000001.regtrans-ms
- [*] \\10.10.10.100\Users\Default\NTUSER.DAT{016888bd-6c6f-11de-8d1d-001e0bcde3ec}.TMContainer00000000000000000002.regtrans-ms
- [*] \\10.10.10.100\Users\SVC_TGS\Desktop\user.txt
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\desktop.ini
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\Server Manager.lnk
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\Shows Desktop.lnk
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\Window Switcher.lnk
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo\Compressed (zipped) Folder.ZFSendToTarget
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo\Desktop (create shortcut).DeskLink
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo\Desktop.ini
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo\Mail Recipient.MAPIMail
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Command Prompt.lnk
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Desktop.ini
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Notepad.lnk
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Run.lnk
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Windows Explorer.lnk
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Maintenance\Desktop.ini
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Maintenance\Help.lnk
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Accessibility\Desktop.ini
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Accessibility\Ease of Access.lnk
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Accessibility\Magnify.lnk
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Accessibility\Narrator.lnk
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Accessibility\On-Screen Keyboard.lnk
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\System Tools\computer.lnk
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\System Tools\Control Panel.lnk
- [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\System Tools\Desktop.ini
- [*] Finished with smb://10.10.10.100/Users. [Remaining: 0] 
-
 -----
 Completed in: 46.9s
 
 ```
-
-> Ok now let's play with that three heads bastard! ;) 
 
 <img src="/assets/images/kerberos.jpg" style="height: 100%; width: auto">
 
