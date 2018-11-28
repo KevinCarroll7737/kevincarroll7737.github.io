@@ -29,7 +29,7 @@ Gaining access
 
 > As always a good starting point is a REST application and nmap shows that this system is hosting one. The first thing I noticed was the title "Cewl Curling site!"
 
-[CeWL](https://tools.kali.org/password-attacks/cewl) is well known offsec tool that generates a list of words in function of the words on a REST App.
+[CeWL](https://tools.kali.org/password-attacks/cewl) is well known offsec tool that generates a list of words in function of the words on a HTML page.
 
 As an alternative for hydra and the intruder module of burp, which is really slow for the community version, you can use [wfuzz](https://github.com/xmendez/wfuzz)
 
