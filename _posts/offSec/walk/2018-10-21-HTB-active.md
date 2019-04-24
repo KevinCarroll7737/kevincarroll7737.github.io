@@ -158,9 +158,9 @@ Completed in: 46.9s
 
 <img src="/assets/images/kerberos.jpg" style="height: 100%; width: auto">
 
-Since I have found valid credentials for the SVC_TGS service, I can ask kerberos for more; Request a legitimate TGT and which service(s) this account can use. Although I can't execute commands as SVC_TGS with CME nor MimiKatz, I'm able to create packets with [impacket ](https://github.com/SecureAuthCorp/impacket) as if I were executing `ps> klist` on the machine, for example. This would give me the name(s) of the (SPNs)service principal name(s) to which the SVC_TGS account has access. 
+With the SVC_TGS service's credentials, it's possible to ask kerberos for more; Request a legitimate TGT and which service(s) this account can use. Although it's not possible to execute commands as SVC_TGS with CME nor MimiKatz, it's to create packets with [impacket ](https://github.com/SecureAuthCorp/impacket) similarly to execute `ps> klist` on the machine, for example. This would give the name(s) of the (SPNs) service principal name(s) to which the SVC_TGS account has access. 
 
-Then, with a SPN and a TGT, I can create a TGS-REQ and send it to Kerberos. The great thing about a TGS is that it allows you to crack the service's password offline. Yeah! ;) 
+Then, with a SPN and a TGT, creating a TGS-REQ to Kerberos is now possible. The great thing about a TGS is that it allows you to crack the service's password offline. Yeah! ;) 
 
 <img src="/assets/images/impacket_GetUserSPNs.png" style="height: 100%; width: auto">
 
@@ -182,7 +182,7 @@ $krb5tgs$<ENCRYPTION_TYPE>$*<USERNAME>$<REALM>$<SPN>*$<FIRST_16_BYTES_TICKET>$<R
 <img src="/assets/images/krb5tgs.png" style="height: 100%; width: auto">
 
 
-Now that we have a TGS, we can retrieve the Service's password. If you run Kali, you will need to follow these steps for JTR to recognize the format.
+With a TGS, we can retrieve the Service's password. If you run Kali, you will need to follow these steps for JTR to recognize the format.
 
 ```
 git clone https://github.com/magnumripper/JohnTheRipper.git && cd JohnTheRipper/src
