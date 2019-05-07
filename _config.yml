@@ -5,7 +5,7 @@ highlighter:      rouge
 # Setup7
 title:            Srbx7
 tagline:          Blog
-description:      "My way of learning is to take notes by applying others' notes described as functionnal."
+description:      "My way of learning is to take notes by applying others' notes while breaking (fixing) stuff."
 url:              https://kevincarroll7737.github.io
 baseurl:          /
                   # the optional subpath of your site, e.g. "/my-jekyll-site/"
