@@ -40,7 +40,7 @@
           Srbx7
         </a>
       </h1>
-      <p class="lead">My way of learning is to take notes by applying others' notes describe as functionnal.</p>
+      <p class="lead">My way of learning is to take notes by applying others' notes while breaking (fixing) stuff.</p>
     </div>
 
     <nav class="sidebar-nav">
@@ -111,14 +111,14 @@ Task Completed
 
 </code></pre></div></div>
 
-<p><img src="/assets/images/index_vault.png" style="width: 50%" /></p>
+<p><img src="/assets/images/index_vault.png" style="width: 70%" /></p>
 
-<p>After few minutes of searching and guessing, you should arrive at this login page.</p>
+<p>After a few enumerations, you should have quickly reached this login page. If you didn’t, you should consider enumerating recursevily directories.</p>
 
 <p><img src="/assets/images/login_vault.png" style="width: 35%" /></p>
 
 <blockquote>
-  <p>Trying to pass this login page was not the solution. After a while I told my self, what if the index page is saying right for once. So kept enumerating and found new files.</p>
+  <p>Trying to pass this login page was not the solution. After a while I told my self, what if the index page is saying right. So kept enumerating and found new files.</p>
 </blockquote>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 dirsearch.py -u http://10.10.10.109/sparklays/design -w common.txt -e html,php,txt -f
@@ -128,7 +128,19 @@ Task Completed
 (...)
 </code></pre></div></div>
 
-<p>This page was giving access to a file upload module, but it had some extension restriction. Replacing the reverse PHP shell extension for <code class="highlighter-rouge">.php5</code> and that’s it, you got access to the ubuntu host as <code class="highlighter-rouge">www-data</code>.</p>
+<p>This page gave access to a file upload module with restrictions. Hence, impossible to tell the server to execute commands through a script directly. I remembered few <a href="https://www.owasp.org/index.php/Unrestricted_File_Upload">technics</a> for bypassing this type of server side control:</p>
+
+<ul>
+  <li>Adding a double extension: <code class="highlighter-rouge">myFile.jpg.php</code></li>
+  <li>Changing letters to their capital forms: <code class="highlighter-rouge">myFile.PhP</code></li>
+  <li>Using short name (for Windows servers)</li>
+  <li>Dropping the string after the first extension by using the <code class="highlighter-rouge">NULL</code> character <code class="highlighter-rouge">0x00</code>: <code class="highlighter-rouge">myFile.jpg0x00.php</code></li>
+  <li>Finding missed extension (e.g. <code class="highlighter-rouge">.php5</code>, <code class="highlighter-rouge">.pht</code>, <code class="highlighter-rouge">.phtml</code>, <code class="highlighter-rouge">.shtml</code>, <code class="highlighter-rouge">.asa</code>, <code class="highlighter-rouge">.cer</code>, <code class="highlighter-rouge">.asax</code>, <code class="highlighter-rouge">.swf</code>, or <code class="highlighter-rouge">.xap</code>)</li>
+</ul>
+
+<blockquote>
+  <p>Replacing the reverse shell extension for the missed extension <code class="highlighter-rouge">.php5</code> gave access to the ubuntu host as <code class="highlighter-rouge">www-data</code>.</p>
+</blockquote>
 
 <h1 id="privesc">PrivEsc</h1>
 
@@ -159,11 +171,7 @@ udp6       0      0 :::48208                :::*                                
 
 <p>Note that local IP adress <code class="highlighter-rouge">192.168.122.1:53</code> is on another network.</p>
 
-<blockquote>
-  <p>Since nmap was disabled for the <code class="highlighter-rouge">www-data</code> user, I try to run <code class="highlighter-rouge">socat</code> and <code class="highlighter-rouge">ncat</code> in order to be able to do port forwarding, but they wasn’t installed.</p>
-</blockquote>
-
-<p>Looking for something else, something like some broken files left on the desktop that would aloud you to pivote trough ssh! <code class="highlighter-rouge">#EPIC_FAIL</code></p>
+<p>Since nmap was disabled for the <code class="highlighter-rouge">www-data</code> user, I try to run <code class="highlighter-rouge">socat</code> and <code class="highlighter-rouge">ncat</code> in order to be able to do port forwarding, but they wasn’t installed. Then it took a second to find the files left on the desktop, which allowed me to rotate through ssh!</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat </span>key
 itscominghome
@@ -184,11 +192,7 @@ proxychains firefox 192.168.122.4
 
 <p><img src="/assets/images/vault_vpn.jpg" style="width:30%" /></p>
 
-<blockquote>
-  <p>And it’s exactly at this moment when I received a call from Mom asking me what I was doing and I answered: Hmmmmm… not much, hacking VPN Mom.</p>
-</blockquote>
-
-<p>This <a href="https://medium.com/tenable-techblog/reverse-shell-from-an-openvpn-configuration-file-73fd8b1d38da">medium article</a> defines well what is what and how to pop a shell out of it!</p>
+<p>This <a href="https://medium.com/tenable-techblog/reverse-shell-from-an-openvpn-configuration-file-73fd8b1d38da">medium article</a> defines well what it is and how it’s possible to pop a shell out of an OpenVPN config file, so I wont go in details.</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>remote 192.168.122.1
 dev tun
@@ -204,14 +208,15 @@ dav3gerous567
 
 cat user*
 a4***************************3
-
 </code></pre></div></div>
 
 <blockquote>
   <p>At this point you could have change the root password and connect with ssh using these credentials and found alex’s <code class="highlighter-rouge">.bash_history</code> where you would have seen that he was pinging the <code class="highlighter-rouge">192.168.5.2</code> IP adress. But no chance, this adress was no longuer reachable.</p>
 </blockquote>
 
-<p>All the traffic to the Vault was passing trough the  <code class="highlighter-rouge">192.168.122.5</code> firewall. Bypassing firewall was easy. All you had to do was to add another IP adress to the same interface and remove this routing. Then, running a basic nmap scan on this target to unveil the <code class="highlighter-rouge">987/tcp</code> port wich was exposing a ssh service that were using the same cred then the DNS box.</p>
+<p>All the traffic to the Vault was passing trough the  <code class="highlighter-rouge">192.168.122.5</code> firewall.</p>
+
+<p>Bypassing firewall was easy. All I had to do was adding another IP adress to the same interface and remove that routing. Then, running a basic scan on this target to unveil the <code class="highlighter-rouge">987/tcp</code> port wich was exposing a ssh service that was using the same credential then the DNS box.</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@DNS:# route
 Kernel IP routing table
@@ -234,7 +239,7 @@ PING 192.168.5.2 (192.168.5.2) 56(84) bytes of data.
 
 <h1 id="welcome-to-the-vault">Welcome to the Vault!</h1>
 
-<p>To complete the box, you had to <code class="highlighter-rouge">scp</code> the <code class="highlighter-rouge">root.txt.gpg</code> back to the ubuntu box and pass the key <code class="highlighter-rouge">itscominghome</code>.</p>
+<p>To complete the box, you had to <code class="highlighter-rouge">scp</code> the <code class="highlighter-rouge">root.txt.gpg</code> back to the ubuntu box and pass the key <code class="highlighter-rouge">itscominghome</code>. ;)</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>You need a passphrase to unlock the secret key for
 user: "david &lt;dave@david.com&gt;"
