@@ -1,189 +1,0 @@
-Script started on Sun 25 Nov 2018 05:05:22 PM EST
-[1m[7m%[27m[1m[0m                                                                                          [0m[27m[24m[J[31m┌┌[34m([31msrbz[34m@[31mT470[34m)[31m-[34m([31m05:05pm[34m-:-[31m11[34m[31m/25[34m)[31m┌-[34m¨[31m-¨¨[34m˙
-[31m└┌[34m([31mscript[34m)[31m┌¨[34m˙[39m[K[?1h=[?2004hbbash s
-zsh: do you wish to see all 263 possibilities (132 lines)? n[J[A[0m[27m[24m[39m[13Cbash s[K[39m   b  lll[?1l>[?2004l
-[Jzsh: command not found: ll
-[1m[7m%[27m[1m[0m                                                                                          [0m[27m[24m[J[31m┌┌[34m([31msrbz[34m@[31mT470[34m)[31m-[34m([31m05:05pm[34m-:-[31m11[34m[31m/25[34m)[31m┌-[34m¨[31m-¨¨[34m˙
-[31m└┌[34m([31mscript[34m)[31m┌¨[34m˙[39m[K[?1h=[?2004hlls[?1l>[?2004l
-total 56K
--rwxrwxr-x 1 srbz srbz  54 Nov  7 22:31 [0m[01;32mbootstrap[0m
--rwxrwxr-x 1 srbz srbz  87 Nov  7 22:31 [01;32mcibuild[0m
--rwxrwxr-x 1 srbz srbz 850 Nov  7 22:31 [01;32mrelease[0m
--rwxrwxr-x 1 srbz srbz  36 Nov  7 22:31 [01;32mserver[0m
--rw-rw-r-- 1 srbz srbz   0 Nov 25 17:05 typescript
-[1m[7m%[27m[1m[0m                                                                                          [0m[27m[24m[J[31m┌┌[34m([31msrbz[34m@[31mT470[34m)[31m-[34m([31m05:05pm[34m-:-[31m11[34m[31m/25[34m)[31m┌-[34m¨[31m-¨¨[34m˙
-[31m└┌[34m([31mscript[34m)[31m┌¨[34m˙[39m[K[?1h=[?2004h..ser  . ./server[1m [0m[0m [?1l>[?2004l
-[33mConfiguration file: none[0m
-            Source: /home/srbz/git/kevincarroll7737.github.io/script
-       Destination: /home/srbz/git/kevincarroll7737.github.io/script/_site
- Incremental build: disabled. Enable with --incremental
-      Generating... 
-                    done in 0.01 seconds.
- Auto-regeneration: enabled for '/home/srbz/git/kevincarroll7737.github.io/script'
-    Server address: http://127.0.0.1:4000
-  Server running... press ctrl-c to stop.
-[2018-11-25 17:05:48] ERROR `/favicon.ico' not found.
-^C
-[1m[7m%[27m[1m[0m                                                                                          [0m[27m[24m[J[31m┌┌[34m([31msrbz[34m@[31mT470[34m)[31m-[34m([31m05:06pm[34m-:-[31m11[34m[31m/25[34m)[31m┌-[34m¨[31m-¨¨[34m˙
-[31m└┌[34m([31mscript[34m)[31m┌¨[34m˙[39m[K[?1h=[?2004hccd ..[?1l>[?2004l
-[3;J[H[2Jtotal 2.9M
-drwxrwxr-x 4 srbz srbz 4.0K Nov  7 22:31 [0m[01;34massets[0m
-drwxrwxr-x 2 srbz srbz 4.0K Nov  7 22:31 [01;34mcayman-blog[0m
-drwxrwxr-x 2 srbz srbz 4.0K Nov  7 22:31 [01;34m_includes[0m
-drwxrwxr-x 2 srbz srbz 4.0K Nov  7 22:31 [01;34m_layouts[0m
-drwxrwxr-x 5 srbz srbz 4.0K Nov  7 22:31 [01;34m_posts[0m
-drwxrwxr-x 3 srbz srbz 4.0K Nov  7 22:31 [01;34m_sass[0m
-drwxrwxr-x 3 srbz srbz 4.0K Nov 25 17:05 [01;34mscript[0m
-drwxrwxr-x 7 srbz srbz 4.0K Nov 13 00:24 [01;34m_site[0m
--rw-rw-r-- 1 srbz srbz  229 Nov  7 22:31 404.md
--rw-rw-r-- 1 srbz srbz 3.2K Nov  7 22:31 CODE_OF_CONDUCT.md
--rw-rw-r-- 1 srbz srbz  412 Nov  7 22:31 _config.yml
--rw-rw-r-- 1 srbz srbz 1.7K Nov  7 22:31 CONTRIBUTING.md
--rw-rw-r-- 1 srbz srbz  404 Nov  7 22:31 dev.md
--rw-rw-r-- 1 srbz srbz   39 Nov  7 22:31 Gemfile
--rw-rw-r-- 1 srbz srbz 1.6K Nov  7 22:31 Gemfile.lock
--rw-rw-r-- 1 srbz srbz   54 Nov  7 22:31 index.md
--rw-rw-r-- 1 srbz srbz 2.7M Nov  7 22:31 jekyll-theme-cayman-blog-0.0.6.gem
--rw-rw-r-- 1 srbz srbz  744 Nov  7 22:31 jekyll-theme-cayman-blog.gemspec
--rw-rw-r-- 1 srbz srbz 6.5K Nov  7 22:31 LICENSE
--rw-rw-r-- 1 srbz srbz   96 Nov  7 22:31 offSec.md
--rw-rw-r-- 1 srbz srbz 8.3K Nov  7 22:31 README.md
-[1m[7m%[27m[1m[0m                                                                                          [0m[27m[24m[J[31m┌┌[34m([31msrbz[34m@[31mT470[34m)[31m-[34m([31m05:06pm[34m-:-[31m11[34m[31m/25[34m)[31m┌-[34m¨[31m-¨¨[34m˙
-[31m└┌[34m([31mkevincarroll7737.github.io[34m)[31m┌¨[34m˙[39m[K[?1h=[?2004hlll[?1l>[?2004l
-zsh: command not found: ll
-[1m[7m%[27m[1m[0m                                                                                          [0m[27m[24m[J[31m┌┌[34m([31msrbz[34m@[31mT470[34m)[31m-[34m([31m05:06pm[34m-:-[31m11[34m[31m/25[34m)[31m┌-[34m¨[31m-¨¨[34m˙
-[31m└┌[34m([31mkevincarroll7737.github.io[34m)[31m┌¨[34m˙[39m[K[?1h=[?2004hlls[?1l>[?2004l
-total 2.9M
-drwxrwxr-x 4 srbz srbz 4.0K Nov  7 22:31 [0m[01;34massets[0m
-drwxrwxr-x 2 srbz srbz 4.0K Nov  7 22:31 [01;34mcayman-blog[0m
-drwxrwxr-x 2 srbz srbz 4.0K Nov  7 22:31 [01;34m_includes[0m
-drwxrwxr-x 2 srbz srbz 4.0K Nov  7 22:31 [01;34m_layouts[0m
-drwxrwxr-x 5 srbz srbz 4.0K Nov  7 22:31 [01;34m_posts[0m
-drwxrwxr-x 3 srbz srbz 4.0K Nov  7 22:31 [01;34m_sass[0m
-drwxrwxr-x 3 srbz srbz 4.0K Nov 25 17:05 [01;34mscript[0m
-drwxrwxr-x 7 srbz srbz 4.0K Nov 13 00:24 [01;34m_site[0m
--rw-rw-r-- 1 srbz srbz  229 Nov  7 22:31 404.md
--rw-rw-r-- 1 srbz srbz 3.2K Nov  7 22:31 CODE_OF_CONDUCT.md
--rw-rw-r-- 1 srbz srbz  412 Nov  7 22:31 _config.yml
--rw-rw-r-- 1 srbz srbz 1.7K Nov  7 22:31 CONTRIBUTING.md
--rw-rw-r-- 1 srbz srbz  404 Nov  7 22:31 dev.md
--rw-rw-r-- 1 srbz srbz   39 Nov  7 22:31 Gemfile
--rw-rw-r-- 1 srbz srbz 1.6K Nov  7 22:31 Gemfile.lock
--rw-rw-r-- 1 srbz srbz   54 Nov  7 22:31 index.md
--rw-rw-r-- 1 srbz srbz 2.7M Nov  7 22:31 jekyll-theme-cayman-blog-0.0.6.gem
--rw-rw-r-- 1 srbz srbz  744 Nov  7 22:31 jekyll-theme-cayman-blog.gemspec
--rw-rw-r-- 1 srbz srbz 6.5K Nov  7 22:31 LICENSE
--rw-rw-r-- 1 srbz srbz   96 Nov  7 22:31 offSec.md
--rw-rw-r-- 1 srbz srbz 8.3K Nov  7 22:31 README.md
-[1m[7m%[27m[1m[0m                                                                                          [0m[27m[24m[J[31m┌┌[34m([31msrbz[34m@[31mT470[34m)[31m-[34m([31m05:06pm[34m-:-[31m11[34m[31m/25[34m)[31m┌-[34m¨[31m-¨¨[34m˙
-[31m└┌[34m([31mkevincarroll7737.github.io[34m)[31m┌¨[34m˙[39m[K[?1h=[?2004hssr
-[Jsr            srch_strings[A[0m[27m[24m[39m[33Csr[K[39mi
-[J[A[36C s scr
-[J[Jscramble      screendump    script        scriptreplay  scrot[A[0m[27m[24m[39m[33Cscr[K[39mi
-[J[A[37Cpts /server[1m [0m[0m [?1l>[?2004l
-[JConfiguration file: /home/srbz/git/kevincarroll7737.github.io/_config.yml
-            Source: /home/srbz/git/kevincarroll7737.github.io
-       Destination: /home/srbz/git/kevincarroll7737.github.io/_site
- Incremental build: disabled. Enable with --incremental
-      Generating... 
-                    done in 0.628 seconds.
- Auto-regeneration: enabled for '/home/srbz/git/kevincarroll7737.github.io'
-    Server address: http://127.0.0.1:4000//
-  Server running... press ctrl-c to stop.
-[2018-11-25 17:06:22] ERROR `/favicon.ico' not found.
-[2018-11-25 17:06:29] ERROR `/favicon.ico' not found.
-[2018-11-25 17:06:33] ERROR `/favicon.ico' not found.
-[2018-11-25 17:06:36] ERROR `/favicon.ico' not found.
-[2018-11-25 17:06:37] ERROR `/favicon.ico' not found.
-[2018-11-25 17:06:37] ERROR `/favicon.ico' not found.
-[2018-11-25 17:06:37] ERROR `/favicon.ico' not found.
-[2018-11-25 17:06:37] ERROR `/favicon.ico' not found.
-[2018-11-25 17:06:38] ERROR `/favicon.ico' not found.
-      Regenerating: 1 file(s) changed at 2018-11-25 17:06:50
-                    _posts/offSec/walk/2018-06-25-HTB-vault.md
-                    ...done in 0.381076404 seconds.
-                    
-      Regenerating: 2 file(s) changed at 2018-11-25 17:07:17
-                    _posts/offSec/walk/2018-11-25-HTB-vault.md
-                    _posts/offSec/walk/2018-06-25-HTB-vault.md
-                    ...done in 0.391863829 seconds.
-                    
-[2018-11-25 17:07:19] ERROR `/favicon.ico' not found.
-[2018-11-25 17:07:21] ERROR `/images/index_vault.png' not found.
-[2018-11-25 17:07:21] ERROR `/images/login_vault.png' not found.
-[2018-11-25 17:07:21] ERROR `/offsec/2018/11/25/assets/images/vault_vpn.jpg' not found.
-[2018-11-25 17:07:21] ERROR `/favicon.ico' not found.
-      Regenerating: 2 file(s) changed at 2018-11-25 17:10:12
-                    assets/images/index_vault.png
-                    assets/images/login_vault.png
-                    ...done in 0.37042161 seconds.
-                    
-[2018-11-25 17:10:15] ERROR `/images/login_vault.png' not found.
-[2018-11-25 17:10:15] ERROR `/offsec/2018/11/25/assets/images/vault_vpn.jpg' not found.
-[2018-11-25 17:10:15] ERROR `/images/index_vault.png' not found.
-[2018-11-25 17:10:15] ERROR `/favicon.ico' not found.
-      Regenerating: 1 file(s) changed at 2018-11-25 17:10:46
-                    _posts/offSec/walk/2018-11-25-HTB-vault.md
-                    ...done in 0.429879425 seconds.
-                    
-[2018-11-25 17:10:48] ERROR `/offsec/2018/11/25/assets/images/vault_vpn.jpg' not found.
-[2018-11-25 17:10:48] ERROR `/favicon.ico' not found.
-      Regenerating: 1 file(s) changed at 2018-11-25 17:15:32
-                    assets/images/vault.png
-                    ...done in 0.375324588 seconds.
-                    
-      Regenerating: 1 file(s) changed at 2018-11-25 17:15:44
-                    _posts/offSec/walk/2018-11-25-HTB-vault.md
-                    ...done in 0.368718456 seconds.
-                    
-      Regenerating: 1 file(s) changed at 2018-11-25 17:16:01
-                    _posts/offSec/walk/2018-11-25-HTB-vault.md
-                    ...done in 0.415705405 seconds.
-                    
-[2018-11-25 17:16:08] ERROR `/offsec/2018/11/25/assets/images/vault_vpn.jpg' not found.
-[2018-11-25 17:16:08] ERROR `/favicon.ico' not found.
-      Regenerating: 1 file(s) changed at 2018-11-25 17:16:23
-                    _posts/offSec/walk/2018-11-25-HTB-vault.md
-                    ...done in 0.387401949 seconds.
-                    
-      Regenerating: 1 file(s) changed at 2018-11-25 17:16:25
-                    _posts/offSec/walk/2018-11-25-HTB-vault.md
-                    ...done in 0.370648744 seconds.
-                    
-      Regenerating: 1 file(s) changed at 2018-11-25 17:16:40
-                    _posts/offSec/walk/2018-11-25-HTB-vault.md
-                    ...done in 0.402348549 seconds.
-                    
-[2018-11-25 17:16:41] ERROR `/offsec/2018/11/25/assets/images/vault_vpn.jpg' not found.
-[2018-11-25 17:16:41] ERROR `/favicon.ico' not found.
-      Regenerating: 1 file(s) changed at 2018-11-25 17:20:48
-                    assets/images/login_vault.png
-                    ...done in 0.38721141 seconds.
-                    
-      Regenerating: 1 file(s) changed at 2018-11-25 17:22:19
-                    assets/images/index_vault.png
-                    ...done in 0.40248516 seconds.
-                    
-[2018-11-25 17:22:26] ERROR `/offsec/2018/11/25/assets/images/vault_vpn.jpg' not found.
-[2018-11-25 17:22:26] ERROR `/favicon.ico' not found.
-      Regenerating: 1 file(s) changed at 2018-11-25 17:22:44
-                    _posts/offSec/walk/2018-11-25-HTB-vault.md
-                    ...done in 0.407091338 seconds.
-                    
-[2018-11-25 17:22:45] ERROR `/offsec/2018/11/25/assets/images/vault_vpn.jpg' not found.
-[2018-11-25 17:22:45] ERROR `/favicon.ico' not found.
-      Regenerating: 1 file(s) changed at 2018-11-25 17:23:26
-                    _posts/offSec/walk/2018-11-25-HTB-vault.md
-                    ...done in 0.403699269 seconds.
-                    
-      Regenerating: 1 file(s) changed at 2018-11-25 17:25:27
-                    _posts/offSec/walk/2018-11-25-HTB-vault.md
-                    ...done in 0.418129621 seconds.
-                    
-      Regenerating: 1 file(s) changed at 2018-11-25 17:25:35
-                    _posts/offSec/walk/2018-11-25-HTB-vault.md
-                    ...done in 0.393160506 seconds.
-                    
-      Regenerating: 1 file(s) changed at 2018-11-25 17:25:39
-                    _posts/offSec/walk/2018-11-25-HTB-vault.md
-                    ...done in 0.384206237 

@@ -1,17 +1,31 @@
-title: Home
-description: Blog
-show_downloads: true
+# Dependencies
+markdown:         kramdown
+highlighter:      rouge
 
-baseurl: "/" # change this to the subpath of your site, e.g. /blog. Leave it empty if you don't need it.
-url: "https://kevincarroll7737.github.io" # change this to the base hostname & protocol for your site
+# Setup7
+title:            Srbx7
+tagline:          Blog
+description:      "My way of learning is to take notes by applying others' notes describe as functionnal."
+url:              https://kevincarroll7737.github.io
+baseurl:          /
+                  # the optional subpath of your site, e.g. "/my-jekyll-site/"
+                  # This will apply to all pages in your Jekyll site.
 
-cayman-blog:
-  date_format: "%b %-d, %Y"
+author:
+  name:           Srbx7
+  url:            https://twitter.com/Srbx7
 
-theme: # leave it empty
+paginate:         5
+# paginate_path:    '/page:num'
+                    # Or '/my-jekyll-site/page:num' if you want to move your index pages
 
-# social
-author: "Srb_"
-twitter:
-  username: srb01246810
-#  admins:
+plugins:
+  - jekyll-feed
+  - jekyll-gist
+  - jekyll-paginate
+
+# Custom vars
+version:            2.0.1
+
+github:
+  repo:             https://github.com/kevincarroll7737/
