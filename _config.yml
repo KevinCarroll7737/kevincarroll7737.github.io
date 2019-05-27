@@ -1,31 +1,114 @@
-# Dependencies
-markdown:         kramdown
-highlighter:      rouge
+# main text of home
+name: Srbx7
+bio: Taking notes while applying others' notes and breaking (fixing) stuff.
 
-# Setup7
-title:            Srbx7
-tagline:          Blog
-description:      "My way of learning is to take notes by applying others' notes while breaking (fixing) stuff."
-url:              https://kevincarroll7737.github.io
-baseurl:          /
-                  # the optional subpath of your site, e.g. "/my-jekyll-site/"
-                  # This will apply to all pages in your Jekyll site.
+# twitter summary info
+description: A blog about technology and stuff related
 
-author:
-  name:           Srbx7
-  url:            https://twitter.com/Srbx7
+# if it's an external image, update below for true
+# better with square images
+external-image: false
+picture: assets/images/profile.jpg
 
-paginate:         5
-# paginate_path:    '/page:num'
-                    # Or '/my-jekyll-site/page:num' if you want to move your index pages
+# If you want to include your resume, set to true
+# and specify source (external or local).
+resume: false
+resume-external: true
+resume-url: https://google.com/?q=my+resume
+
+url: https://kevincarroll7737.github.io
+# your url: http://USERNAME.github.io
+
+permalink: /:title/
+
+# To enable google analytics, supply your token below
+# analytics-google: 'UA-MYANALYTICS'
+
+# To enable piwik tracking, supply your url & site ID below
+# analytics-piwik-url: 'piwik.my-host.com'
+# analytics-piwik-id: 1
+
+# if you don't want comments in your posts, leave categories empty
+disqus:
+  shortname: mydisqus # enter this from your disqus account
+  categories: #[blog, project] # only show disqus for posts that have these categories
+
+# if you don't have any of social below, comment the line
+#facebook: myfacebook
+twitter: https://twitter.com/srbx7
+# google: mygoogle
+# instagram: myinstagram
+# pinterest: mypinterest
+linkedin: kevin-carroll-900348123
+# youtube: myyoutube
+# spotify: myspotify
+github: kevincarroll7737
+# gitlab: mygitlab
+# lastfm: mylastfm
+# stackoverflow: 7044681/mystackoverflow
+# quora: userquora
+# reddit: username
+#medium: medium
+# vimeo: myvimeo
+# lanyrd: mylanyrd
+#email: myemail@gmail.com
+
+authors:
+    Srbx7:
+        name: Srbx7
+        bio: Realty's my own fiction.
+        external-image: false
+        picture: assets/images/profile.jpg
+        twitter: https://twitter.com/srbx7
+
+# do you want a larger site? change the option below
+# options: [normal, large] | default: normal
+# normal = 560px / large = 810px
+width: large #normal
+
+# if you don't need pagination, comment the *paginate* configs below
+# paginate: 5
+# paginate_path: "blog/:num/"
+
+# if you don't need projects, comment the *projects* configs below
+#projects: true
+
+# if you don't need "about" or "blog", comment them out below
+about: true
+blog: true
+
+# do you want to show the "read time" of the posts?
+read-time: true
+
+# do you want to show the "tags" inside the posts?
+show-tags: true
+
+# related posts inside a post?
+related: true
+
+# Display links for next and previous posts for the specified categories
+post-advance-links: [blog]
+
+# show author block at the end of a post ?
+show-author: true
+
+# do you want some animations?
+animation: true
 
 plugins:
-  - jekyll-feed
+  - jekyll-seo-tag
   - jekyll-gist
-  - jekyll-paginate
+  - jekyll-feed
+  - jemoji
+  - jekyll-admin
 
-# Custom vars
-version:            2.0.1
+jekyll-mentions:
+    base_url: https://github.com
 
-github:
-  repo:             https://github.com/kevincarroll7737/
+compress_html:
+    ignore:
+        envs:
+        - development
+        - stage
+
+exclude: ["travis.sh", "Rakefile", "README.md", "Gemfile", "Gemfile.lock", "FAQ.md"]

