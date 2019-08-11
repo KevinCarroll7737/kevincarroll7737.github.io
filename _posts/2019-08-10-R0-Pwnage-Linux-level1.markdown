@@ -1,6 +1,17 @@
-# Ringzer0team | Pwnage Linux - Level1
-
-## Srbx7
+---
+title: "R0 | Pwnage Linux - Level1""
+layout: post
+date: 2019-08-10
+tag:
+- Pwnage
+- x86
+- Linux
+- walktrhough
+- CTF 
+category: blog
+author: Srbx7
+description: R0 Challenge
+---
 
 First let have a look at the source code: `cat /levels/level1.c`
 
