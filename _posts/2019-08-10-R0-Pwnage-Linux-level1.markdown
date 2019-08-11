@@ -13,7 +13,7 @@ author: Srbx7
 description: R0 | Pwnage Linux - Level1
 ---
 
-First let have a look at the source code: `cat /levels/level1.c`
+`# cat /levels/level1.c`
 
 ```
 #include <stdio.h>
@@ -29,9 +29,8 @@ int main(int argc, char **argv) {
 }
 ```
 
-So this code's copying the argument to a 1024 bit buffer using the well known vulnerable function `strcpy`.
+This code's copying the argument to a 1024-bit buffer using the well known vulnerable function `strcpy`.
 
-Great! Now, let's have a look at the binary it self: 
 
 `# file /levels/level1`
 
@@ -39,8 +38,9 @@ Great! Now, let's have a look at the binary it self:
 level1: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.26, BuildID[sha1]=f355fe3b2ac64ecfedfcf48c6208429d0138e80d, not stripped
 ```
 
-+ Has a setuid; probably for the next level ;)
-+ Is compiled for 32 processors (e.g.: x86 arch)
+> Has a setuid (probably for the next level.. )
+
+> Is compiled for 32 processors (e.g.: x86 arch)
 
 `# checksec /levels/level1`
 
@@ -55,10 +55,13 @@ level1: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamic
 
 ```
 
-+ No RELRO (Relocation Read-Only): it's possible to overwrite global variable
-+ No canary found: it's possible to smash the stack 
-+ NX (no executable) disabled: it's possible to write and execute from the stack
-+ No PIE (Position Independant Executable): it tells the loader which virtual address it should use and keeps its memory layout quite static (e.g.: `0x8048000`)
+> No RELRO (Relocation Read-Only): it's possible to overwrite global variable
+
+> No canary found: it's possible to smash the stack 
+
+> NX (no executable) disabled: it's possible to write and execute from the stack
+
+> No PIE (Position Independant Executable): it tells the loader which virtual address it should use and keeps its memory layout quite static (e.g.: `0x8048000`)
 
 So, basically, what you have to do is overflow the 1024-bit buffer to return to an address on the stack where's an x86 shellcode that generates a shell. Let's hope that the user will be level 2 and have launched this ELF using the `setuid`.
 
@@ -70,7 +73,7 @@ cyclic(2000)
 ```
 
 ``` bash
-gdb run <CYCLIC_PL>
+(gdb) run <CYCLIC_PL>
 Program received signal SIGSEGV, Segmentation fault.
 0x6b61616a in ?? ()
 ```
