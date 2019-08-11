@@ -1,5 +1,5 @@
 ---
-title: "R0 | Pwnage Linux - Level1""
+title: "R0 | Pwnage Linux - Level1"
 layout: post
 date: 2019-08-10
 tag:
@@ -10,7 +10,7 @@ tag:
 - CTF 
 category: blog
 author: Srbx7
-description: R0 Challenge
+description: R0 | Pwnage Linux - Level1
 ---
 
 First let have a look at the source code: `cat /levels/level1.c`
