@@ -23,7 +23,7 @@ level2: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamic
 
 > Is an ELF 32-bit LSB exec
 
-> Is compile form Intel X86
+> Is compile for Intel X86 processors
 
 `# checksec level2` 
 
