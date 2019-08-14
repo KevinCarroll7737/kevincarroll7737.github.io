@@ -113,7 +113,7 @@ int main(int argc, char **argv)
 
 Meh, it doesn't seem that hard...... Let's try to provide this prgoram with everything it needs for the first two user inputs. Then just overflow the third one to overwrite the user variable with `root`. To do this, it is necessary to determine the memory address of the `user` variable.
 
-By using `gdb`, it is possible to see that this address is: `0xffa3de8c`
+By using `gdb`, it is possible to see that this address is: `0xffffdc6c`
 
 ```bash
 (gdb) 
