@@ -23,7 +23,7 @@ level2: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamic
 
 > Is an ELF 32-bit LSB exec
 
-> Is compile for Intel X86 processors
+> Is compile for Intel x86 processors
 
 `# checksec level2` 
 
@@ -105,11 +105,11 @@ int main(int argc, char **argv)
 } 
 ```
 
->  the first user input has to be `nobody`
+>  The first user input has to be `nobody`
 
->  the second user input has to be `Ksdkjkk32avsh`
+>  The second user input has to be `Ksdkjkk32avsh`
 
->  then the first user input has to be `root`
+>  Then, the first user input has to be `root`
 
 Meh, it doesn't seem that hard... Let's provide this prgoram with everything it needs for the first two user inputs. Then, simply overflow the third one, to overwrite the user variable with `root`. To do this, it is necessary to determine the memory address of the `user` variable.
 
