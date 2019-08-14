@@ -147,7 +147,7 @@ cyclic_find(0x61616179)
 96
 ```
 
-`cat /tmp/srbx7.sh`
+`# cat /tmp/srbx7.sh`
 
 ```bash
 #!/bin/bash
