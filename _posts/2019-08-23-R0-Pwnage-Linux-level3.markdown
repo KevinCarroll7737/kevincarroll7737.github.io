@@ -40,8 +40,6 @@ level3: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamic
     RWX:      Has RWX segments
 ```
 
-> Simply go a head a smash the stack! ;)
-
 `# cat /levels/level3.c`
 
 ```c
