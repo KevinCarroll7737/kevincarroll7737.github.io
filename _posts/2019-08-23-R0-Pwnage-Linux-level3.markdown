@@ -83,7 +83,7 @@ Well okay, if it's not already perceived, a good exercise would be for you to sp
 
 Need a hint? Okay, what differs from `strcpy()` and `strncpy()` ?
 
-> Problem w/ `strncpy( char *dest, const char *src, size_t n )`: If there is no null character among the first n character of src, the string placed in dest will not be null-terminated. So `strncpy()` does not guarantee that the destination string will be NULL terminated. Hence, its buffer memory can't be directly overflow.
+> Problem w/ `strncpy( char *dest, const char *src, size_t n )`: If there is no null character among the first n characters of src, the string placed in dest will not be null-terminated. So `strncpy()` does not guarantee that the destination string will be NULL terminated. Hence, its buffer memory can't be directly overflow.
 
 > Problem w/ `strcpy( char *dest, const char *src )`: The `strcpy()` function does not specify the size of the destination array, so buffer overrun is often a risk --as `strcat` and `strcmp`.
 
