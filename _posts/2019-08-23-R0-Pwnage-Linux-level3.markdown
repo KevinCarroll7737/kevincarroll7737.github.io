@@ -79,7 +79,7 @@ int main(int argc, char **argv)
 }
 ```
 
-Well okay, if it's not already perceived, a good exercise would be for you to spot any anomaly, a use that differs from one point to another in this code...
+Well okay, if it's not already perceived, a good exercise would be for you to spot any anomaly, any use that differs from one point to another in this code...
 
 Need a hint? Okay, what differs from `strcpy()` and `strncpy()` ?
 
