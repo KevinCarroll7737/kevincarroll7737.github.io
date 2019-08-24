@@ -85,7 +85,7 @@ int main(int argc, char **argv)
 
 Problem w/ `strncpy( char *dest, const char *src, size_t n )`: If there is no null character among the first n character of src, the string placed in dest will not be null-terminated. So `strncpy()` does not guarantee that the destination string will be NULL terminated. Hence, its buffer memory can't be directly overflow.
 
-Problem w/ `strcpy( char *dest, const char *src )`: The `strcpy()` function does not specify the size of the destination array, so buffer overrun is often a risk (as `strcat and strcmp`).
+Problem w/ `strcpy( char *dest, const char *src )`: The `strcpy()` function does not specify the size of the destination array, so buffer overrun is often a risk --as `strcat` and `strcmp`.
 
 Fine! By fulling the `buf2` buffer w/o null byte, it's possible to overflow the `buf`. In other words, since `buf1` is right next (below) `buf2` on the stack and `strcpy` function stop copying when it gets a null char, `buf2` will looks something like `buf2` + `buf1`.
 
