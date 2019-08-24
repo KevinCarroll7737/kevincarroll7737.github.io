@@ -111,7 +111,7 @@ int main(int argc, char **argv)
 
 >  Then, the first user input has to be `root`
 
-Meh, it doesn't seem that hard... Let's provide this prgoram with everything it needs for the first two user inputs. Then, simply overflow the third one, to overwrite the user variable with `root`. To do this, it is necessary to determine the memory address of the `user` variable.
+Meh, it doesn't seem that hard... Let's provide this program with everything it needs for the first two user inputs. Then, simply overflow the third one, to overwrite the user variable with `root`. To do this, it is necessary to determine the memory address of the `user` variable.
 
 By using `gdb`, it's possible to see that this address is: `0xffffdc6c`
 
