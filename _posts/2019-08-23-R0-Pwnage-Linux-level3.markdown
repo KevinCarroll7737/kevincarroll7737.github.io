@@ -87,7 +87,7 @@ Need a hint? Okay, what differs from `strcpy()` and `strncpy()` ?
 
 > Problem w/ `strcpy( char *dest, const char *src )`: The `strcpy()` function does not specify the size of the destination array, so buffer overrun is often a risk --as `strcat` and `strcmp`.
 
-Fine! By fulling the `buf2` buffer w/o null byte, it's possible to overflow the `buf`. In other words, since `buf1` is right next (below) `buf2` on the stack and `strcpy` function stop copying when it gets a null char, `buf2` will looks something like `buf2` + `buf1`.
+Fine! By fulling the `buf2` buffer w/o null byte, it's possible to overflow the `buf` array's memory. In other words, since `buf1` is right next (below) `buf2` on the stack and `strcpy` function stop copying when it gets a null char, `buf2` will looks something like `buf2` + `buf1`.
 
 ```
 |      128      | arg2 -> buf2 -> s1
